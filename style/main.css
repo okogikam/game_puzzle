@@ -1,0 +1,14 @@
+*{
+    box-sizing: border-box;
+}
+#board{
+    overflow: hidden;
+}
+#top-menu{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    background-color: grey;
+    color: white;
+}
