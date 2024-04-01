@@ -15,62 +15,13 @@
 </head>
 <body>
     <!-- main  -->
-    <div id="main-board">
-        <div id="top-menu">
-            <span class="username">Okogikam</span>
-            <button class="btn btn-secondary btn-sm  setting">
-                <i class="fa-solid fa-gear"></i>
-            </button>
-        </div>
-        <div id="board">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="row p-3">
-                        <div class="col-3">
-                            <div class="card">
-                                <img class="card-img" src="./img/lv_1.jpeg" alt="">
-                                <span>Stg 1</span>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="card">
-                                <img class="card-img" src="./img/lv_1.jpeg" alt="">
-                                <span>Stg 1</span>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="card">
-                                <img class="card-img" src="./img/lv_1.jpeg" alt="">
-                                <span>Stg 1</span>
-                            </div>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-sm-8">
-                    <canvas id="game-board" width="300" height="300"></canvas>                    
-                </div>
-                <div class="col-sm-4">
-                    <div id="score-board">
-                        <div class="game-menu m-1">
-                            <button class="btn btn-sm"><i class="fa-solid fa-play"></i></button>
-                            <button class="btn btn-sm"><i class="fa-solid fa-rotate-right"></i></button>
-                            <button class="btn btn-sm"><i class="fa-solid fa-info"></i></button>
-                        </div>
-                        <p class="m-1">Time: <span class="time">00:00:01</span></p>
-                        <div class="game-menu m-1">
-                            <button class="btn btn-sm"><i class="fa-solid fa-right-from-bracket"></i></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="aside">
-            <div id="music">
-                <audio id="bgm" src="./musics/bgm.mp3"></audio>
-                <audio id="click" src="./musics/click.wav"></audio>
-                <audio id="clear" src="./musics/completed.wav"></audio>
-            </div>
-        </div>
+    <div id="main-board"></div>
+    <div id="loading">
+        <i class="fa-solid fa-puzzle-piece fa-flip"></i>
+        <span class="fa-fade">
+            Loading...
+        </span>
+            
     </div>
     <!-- bootstrap  -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -80,5 +31,6 @@
     <script src="./js/main.js"></script>
     <!-- game js  -->
     <script src="./js/game.js"></script>
+    <script src="./js/init.js"></script>
 </body>
 </html>

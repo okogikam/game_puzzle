@@ -12,3 +12,20 @@
     background-color: grey;
     color: white;
 }
+#loading{
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: grey;
+
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+#loading i{
+    font-size: 3rem;
+}
