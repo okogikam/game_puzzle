@@ -51,7 +51,9 @@ class Game{
         })
         gameInfo.querySelector("#canvas").addEventListener("click",(e)=>{
             // console.log(e)
-            this.movePice(e.layerX,e.layerY)
+            if(!this.clear){
+                this.movePice(e.layerX,e.layerY)
+            }
             // this.movePice({e.x,e.y});
         })
         
@@ -71,7 +73,7 @@ class Game{
         })
         if(match === 15){
             this.clear = true;
-            return "game Clear";
+            alert("game Clear");
         }
         console.log(match)
     }
