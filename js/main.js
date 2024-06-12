@@ -2,6 +2,37 @@ class Main{
     constructor(conf){
         this.element = conf.element;
         this.load = conf.load;
+        this.ready = false;
+        this.userReady = false;
+        this.imgReady = false;
+        this.progressReady = false;
+        this.stage = [];
+    }
+
+    async loadData(){
+        let dtUser = await fetch("./data/userData.json");
+        dtUser = await dtUser.json();
+        if(dtUser){
+            this.userReady = true;            
+        }
+        let dtImg = await fetch("./data/imgData.json");
+        dtImg = await dtImg.json();
+        if(dtImg){
+            this.imgReady = true;
+            dtImg.forEach(img => {
+                let stImage = new Stage({
+                    Main: this,
+                    image: img
+                });
+                this.stage.push(stImage);
+            });
+            // console.log(this.stage)
+        }
+        let dtProgres = await fetch("./data/userProgress.json");
+        dtProgres = await dtProgres.json();
+        if(dtProgres){
+            this.progressReady = true;
+        }
     }
 
     loadUserInfo(){
@@ -16,18 +47,9 @@ class Main{
     }
 
     loadGameInfo(){
-        const gameInfo = document.createElement("div");
-        gameInfo.setAttribute("id","board");
-        gameInfo.innerHTML = 
-        `<div class="row">
-            <div class="col-3">
-                <div class="card">
-                    <img class="card-img" src="./img/lv_1.jpeg" alt="">
-                    <span>Stg 1</span>
-                </div>
-            </div>
-        </div>`
-        this.element.appendChild(gameInfo);
+        Object.values(this.stage).forEach((st)=>{
+            st.display();
+        })
     }
 
     loadAside(){
@@ -41,12 +63,24 @@ class Main{
         </div>`
         this.element.appendChild(aside);
     }
+    async gameLoop(){
+        if(!this.ready){
+            this.element.innerHTML = "";
+            this.loadGameInfo(); 
+        }
+        
+        if(this.userReady && this.imgReady && this.progressReady){            
+            this.ready = true;
+            this.load.classList.add("d-none");
+        }
 
-    async init(){
-        this.loadUserInfo();
-        this.loadGameInfo();
-        this.loadAside();
-
-        this.load.classList.add("d-none");
+        requestAnimationFrame(()=>{            
+            this.gameLoop();
+        })
+    }
+    async init(){        
+        this.loadData()
+        this.gameLoop()    
+           
     }
 }

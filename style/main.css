@@ -4,6 +4,12 @@
 #board{
     overflow: hidden;
 }
+#main-board{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+}
 #top-menu{
     display: flex;
     justify-content: space-between;
@@ -28,4 +34,22 @@
 }
 #loading i{
     font-size: 3rem;
+}
+#stage{
+    cursor: pointer;
+}
+#gameBoard{
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#gameBoard .card{
+    /* max-width: 80%; */
 }
