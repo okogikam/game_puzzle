@@ -11,6 +11,8 @@ class Game{
         this.imgWidth = 0;
         this.clear  = false;
         this.pause = true;
+        this.timeStart = false;
+        this.time = 0;
     }
 
     async loadGeme(){        
@@ -48,7 +50,7 @@ class Game{
         })
 
         gameInfo.querySelector("#game_start").addEventListener("click",()=>{
-            gameInfo.querySelector("#game_img").setAttribute("style","opacity:0;")
+            gameInfo.querySelector("#game_img").setAttribute("style","display:none;")
             gameInfo.querySelector("#canvas").setAttribute("width",`${this.imgWidth}`)
             gameInfo.querySelector("#canvas").setAttribute("height",`${this.imgWidth}`)
 
@@ -60,12 +62,15 @@ class Game{
         gameInfo.querySelector("#game_help").addEventListener("click",()=>{
             if(!this.pause){
                 this.pause = true;
+                gameInfo.querySelector("#game_img").setAttribute("style","display:block;")
+            }else{
+                this.pause = false;
+                gameInfo.querySelector("#game_img").setAttribute("style","display:none;")
             }       
-            gameInfo.querySelector("#game_img").setAttribute("style","opacity:1;")
         })
         gameInfo.querySelector("#canvas").addEventListener("click",(e)=>{
-            // console.log(e)
-            if(!this.clear){
+            console.log(this.pause)
+            if(!this.clear && !this.pause){
                 this.movePice(e.layerX,e.layerY)
             }
             // this.movePice({e.x,e.y});
@@ -91,8 +96,26 @@ class Game{
         }
         console.log(match)
     }
-    gameScore(){
-        // mencatat skor game 
+    async gameScore(gameInfo){
+        let scoreBoard = gameInfo.querySelector(".score");
+                
+        // mencatat skor game
+        setInterval(()=>{
+            if(!this.timeStart || !this.pause){
+                this.time += 1;
+                // console.log(this.time)
+                scoreBoard.innerHTML = `${this.displayTime(this.time)}`;
+            }
+            this.timeStart = true;
+        },1000)       
+    }
+    displayTime(time){
+        if(time < 60){
+            return `00:00:${time}`;
+        }
+        if(time >= 60 && time < 3600){
+            return `00;${time}:00`;
+        }
     }
     gameReset(){
         this.data2 = this.gameData(this.data1);
@@ -102,7 +125,8 @@ class Game{
         let div = gameInfo.querySelector("#game_start");
         if(this.pause){            
             this.pause = false;
-            div.innerHTML = `<i class="fa-solid fa-circle-pause"></i>`;           
+            div.innerHTML = `<i class="fa-solid fa-circle-pause"></i>`;
+            this.gameScore(gameInfo);           
         }else{
             this.pause = true;
             div.innerHTML = `<i class="fa-solid fa-circle-play"></i>`;  
