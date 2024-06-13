@@ -1,51 +1,31 @@
 [
     {
         "imgId": "#001",
-<<<<<<< HEAD
         "url": "./img/lv_1.jpeg",
-=======
-        "url": "https://okogikam.github.io/game_puzzle/img/lv_1.jpeg",
->>>>>>> 977fb814d11022441916bb42ee93c32dcd645bff
         "width": "1024",
         "height": "1024"
     },
     {
         "imgId": "#002",
-<<<<<<< HEAD
         "url": "./img/lv_2.jpeg",
-=======
-        "url": "https://okogikam.github.io/game_puzzle/img/lv_2.jpeg",
->>>>>>> 977fb814d11022441916bb42ee93c32dcd645bff
         "width": "1024",
         "height": "1024"
     },
     {
         "imgId": "#003",
-<<<<<<< HEAD
         "url": "./img/lv_3.jpeg",
-=======
-        "url": "https://okogikam.github.io/game_puzzle/img/lv_3.jpeg",
->>>>>>> 977fb814d11022441916bb42ee93c32dcd645bff
         "width": "1024",
         "height": "1024"
     },
     {
         "imgId": "#004",
-<<<<<<< HEAD
         "url": "./img/lv_4.jpeg",
-=======
-        "url": "https://okogikam.github.io/game_puzzle/img/lv_4.jpeg",
->>>>>>> 977fb814d11022441916bb42ee93c32dcd645bff
         "width": "1024",
         "height": "1024"
     },
     {
         "imgId": "#005",
-<<<<<<< HEAD
         "url": "./img/lv_5.jpeg",
-=======
-        "url": "https://okogikam.github.io/game_puzzle/img/lv_5.jpeg",
->>>>>>> 977fb814d11022441916bb42ee93c32dcd645bff
         "width": "1024",
         "height": "1024"
     }
