@@ -1,3 +1,11 @@
+:root{
+    --primary: #F8F4E1;
+    --secondary: #AF8F6F;
+    --choclate: #74512D;
+    --dark-choclate: #543310;
+    --white: #efefee;
+    --black: #0f0f0f;
+}
 #score-board{
     display: flex;
     flex-flow: column;
@@ -9,4 +17,7 @@
     top: 0px;
     left: 0px;
     border-radius: 5px;
+}
+.game-control, .score{
+    text-align: center;
 }

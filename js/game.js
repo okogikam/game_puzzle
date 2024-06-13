@@ -10,6 +10,7 @@ class Game{
         this.data2 = this.gameData(this.data1);
         this.imgWidth = 0;
         this.clear  = false;
+        this.pause = true;
     }
 
     async loadGeme(){        
@@ -25,8 +26,16 @@ class Game{
                 </div>
                 <div class="col-md-6">
                     <h3>${this.stage.stage}</h3>
-                    <button id="game_start" class="btn btn-sm">Start</button>
-                    <button id="game_clear" class="btn btn-sm">Clear</button>
+                    <div class="game-control">
+                    <button id="game_start" class="btn">
+                    <i class="fa-solid fa-circle-play"></i>
+                    </button>
+                    <button id="game_reset" class="btn"><i class="fa-solid fa-rotate-right"></i></button>
+                    <button id="game_help" class="btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                    </div>
+                    <p class="score">00:00:01</p>
                 </div>
             </div>            
         </div>`
@@ -43,11 +52,16 @@ class Game{
             gameInfo.querySelector("#canvas").setAttribute("width",`${this.imgWidth}`)
             gameInfo.querySelector("#canvas").setAttribute("height",`${this.imgWidth}`)
 
-            this.gameStart();
+            this.gameStart(gameInfo);
         })
-        gameInfo.querySelector("#game_clear").addEventListener("click",()=>{         
-
-            this.canvas.clear();
+        gameInfo.querySelector("#game_reset").addEventListener("click",()=>{        
+            this.gameReset();
+        })
+        gameInfo.querySelector("#game_help").addEventListener("click",()=>{
+            if(!this.pause){
+                this.pause = true;
+            }       
+            gameInfo.querySelector("#game_img").setAttribute("style","opacity:1;")
         })
         gameInfo.querySelector("#canvas").addEventListener("click",(e)=>{
             // console.log(e)
@@ -80,9 +94,19 @@ class Game{
     gameScore(){
         // mencatat skor game 
     }
-    gameStart(){
+    gameReset(){
         this.data2 = this.gameData(this.data1);
-        console.log(this.data2)
+        this.canvas.draw(this.data2);
+    }
+    gameStart(gameInfo){
+        let div = gameInfo.querySelector("#game_start");
+        if(this.pause){            
+            this.pause = false;
+            div.innerHTML = `<i class="fa-solid fa-circle-pause"></i>`;           
+        }else{
+            this.pause = true;
+            div.innerHTML = `<i class="fa-solid fa-circle-play"></i>`;  
+        }
         this.canvas.draw(this.data2);
     }
    async movePice(x,y){

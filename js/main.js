@@ -7,13 +7,15 @@ class Main{
         this.imgReady = false;
         this.progressReady = false;
         this.stage = [];
+        this.dataUser = [];
     }
 
     async loadData(){
         let dtUser = await fetch("./data/userData.json");
         dtUser = await dtUser.json();
         if(dtUser){
-            this.userReady = true;            
+            this.userReady = true;
+            this.dataUser = dtUser[0];            
         }
         let dtImg = await fetch("./data/imgData.json");
         dtImg = await dtImg.json();
@@ -39,11 +41,12 @@ class Main{
         const userInfo = document.createElement("div");
         userInfo.setAttribute("id","top-menu")
         userInfo.innerHTML = 
-        `<span class="username">Okogikam</span>
-        <button class="btn btn-secondary btn-sm  setting">
+        `<span class="username">${this.dataUser['userName']}</span>
+        <!--<button class="btn btn-secondary btn-sm  setting">
             <i class="fa-solid fa-gear"></i>
-        </button>`
+        </button>-->`
         this.element.appendChild(userInfo);
+        console.log(this.dataUser);
     }
 
     loadGameInfo(){
@@ -66,6 +69,7 @@ class Main{
     async gameLoop(){
         if(!this.ready){
             this.element.innerHTML = "";
+            this.loadUserInfo();
             this.loadGameInfo(); 
         }
         
@@ -79,7 +83,7 @@ class Main{
         })
     }
     async init(){        
-        this.loadData()
+        this.loadData()        
         this.gameLoop()    
            
     }

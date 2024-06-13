@@ -12,7 +12,7 @@ class Stage{
         // tampilkan stage di menu stage 
         const gameInfo = document.createElement("div");
         gameInfo.setAttribute("id","stage");
-        gameInfo.classList.add("col-sm-2");
+        gameInfo.setAttribute("class","col-6 col-sm-2");
         gameInfo.innerHTML = 
         `<div class="card">
             <img class="card-img" src="${this.url}" alt="">
