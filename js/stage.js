@@ -8,17 +8,17 @@ class Stage{
         this.element = conf.Main.element;
     }
 
-    display(){        
+    display(element){        
         // tampilkan stage di menu stage 
         const gameInfo = document.createElement("div");
         gameInfo.setAttribute("id","stage");
-        gameInfo.setAttribute("class","col-6 col-sm-2");
+        gameInfo.setAttribute("class","col-sm-6 col-md-3");
         gameInfo.innerHTML = 
-        `<div class="card">
+        `<div class="card m-1">
             <img class="card-img" src="${this.url}" alt="">
             <span>${this.stage}</span>
         </div>`
-        this.element.appendChild(gameInfo);
+        element.appendChild(gameInfo);
 
         gameInfo.addEventListener("click",()=>{
             this.playStage();

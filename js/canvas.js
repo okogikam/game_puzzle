@@ -28,6 +28,10 @@ class Canvas{
             }
         })
     }
+    drawFull(){
+        this.ctx.clearRect(0,0,this.width,this.width);
+        this.ctx.drawImage(this.img,0,0,1024,1024,0,0,this.width,this.width)
+    }
     clear(){
         this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
     }

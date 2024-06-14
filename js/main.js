@@ -50,9 +50,13 @@ class Main{
     }
 
     loadGameInfo(){
+        let stageConteiner = document.createElement("div");
+        stageConteiner.setAttribute("id","stage-conteiner");
+        stageConteiner.setAttribute("class","row p-2");
         Object.values(this.stage).forEach((st)=>{
-            st.display();
+            st.display(stageConteiner);
         })
+        this.element.appendChild(stageConteiner);
     }
 
     loadAside(){

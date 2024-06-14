@@ -21,14 +21,18 @@ class Game{
         gameInfo.setAttribute("id","gameBoard");
         gameInfo.innerHTML = 
         `<div class="card">
-            <div class="row">
-                <div class="col-md-6">
-                    <img id="game_img" class="card-img" src="${this.stage.url}" alt="">
-                    <canvas id="canvas" width="400" height="400"></canvas>
-                </div>
-                <div class="col-md-6">
-                    <h3>${this.stage.stage}</h3>
-                    <div class="game-control">
+            <div class="card-header p-0">
+                <h3><button id="game_close" class="btn">
+                <i class="fa-solid fa-reply"></i>
+                </button>
+                ${this.stage.stage}</h3>
+            </div>
+            <div class="p-0 m-0">
+                <img id="game_img" class="card-img" src="${this.stage.url}" alt="" style="opacity:0;">
+                <canvas id="canvas" width="400" height="400"></canvas>
+            </div>
+            <div class="card-footer">
+                <div class="game-control">
                     <button id="game_start" class="btn">
                     <i class="fa-solid fa-circle-play"></i>
                     </button>
@@ -36,44 +40,48 @@ class Game{
                     <button id="game_help" class="btn">
                     <i class="fa-solid fa-circle-info"></i>
                     </button>
-                    </div>
-                    <p class="score">00:00:01</p>
                 </div>
-            </div>            
+                    <p class="score">-:-:-</p>
+            </div>                                                  
         </div>`
         this.stage.element.appendChild(gameInfo);
         this.imgWidth = gameInfo.querySelector("#game_img").clientWidth
+        gameInfo.querySelector("#canvas").setAttribute("width",`${this.imgWidth}`)
+        gameInfo.querySelector("#canvas").setAttribute("height",`${this.imgWidth}`)
+
         this.canvas = new Canvas({
             canvas: gameInfo.querySelector("#canvas"),
             img: gameInfo.querySelector("#game_img"),
             width: this.imgWidth
         })
+        this.canvas.drawFull();
 
         gameInfo.querySelector("#game_start").addEventListener("click",()=>{
-            gameInfo.querySelector("#game_img").setAttribute("style","display:none;")
-            gameInfo.querySelector("#canvas").setAttribute("width",`${this.imgWidth}`)
-            gameInfo.querySelector("#canvas").setAttribute("height",`${this.imgWidth}`)
-
+            gameInfo.querySelector("#game_img").setAttribute("style","opacity:0;")
             this.gameStart(gameInfo);
         })
         gameInfo.querySelector("#game_reset").addEventListener("click",()=>{        
             this.gameReset();
         })
+        gameInfo.querySelector("#game_close").addEventListener("click",()=>{        
+            gameInfo.remove();
+        })
         gameInfo.querySelector("#game_help").addEventListener("click",()=>{
             if(!this.pause){
                 this.pause = true;
-                gameInfo.querySelector("#game_img").setAttribute("style","display:block;")
+                // gameInfo.querySelector("#game_img").setAttribute("style","display:block;")
+                this.canvas.drawFull();
             }else{
                 this.pause = false;
-                gameInfo.querySelector("#game_img").setAttribute("style","display:none;")
+                this.canvas.draw(this.data2)
+                // gameInfo.querySelector("#game_img").setAttribute("style","display:none;")
             }       
         })
-        gameInfo.querySelector("#canvas").addEventListener("click",(e)=>{
-            console.log(this.pause)
+        gameInfo.querySelector("canvas").addEventListener("click",(e)=>{
+            let cardHeaderHeight = gameInfo.querySelector(".card-header").offsetHeight;           
             if(!this.clear && !this.pause){
-                this.movePice(e.layerX,e.layerY)
+                this.movePice(e.layerX,(e.layerY - cardHeaderHeight))
             }
-            // this.movePice({e.x,e.y});
         })
         
         
@@ -85,41 +93,51 @@ class Game{
         Object.keys(this.data2).forEach(dt=>{
             if(dt == `${this.data2[dt][0]},${this.data2[dt][1]}` && this.data2["3,3"] == "blank"){
                 match += 1;
-                // console.log(dt)
             }
-            // console.log(this.data1[i])
             i++;
         })
         if(match === 15){
             this.clear = true;
-            alert("game Clear");
+            this.canvas.drawFull();
+            setTimeout(()=>{
+                alert("game Clear");
+            },2000)
         }
         console.log(match)
     }
     async gameScore(gameInfo){
-        let scoreBoard = gameInfo.querySelector(".score");
-                
         // mencatat skor game
-        setInterval(()=>{
-            if(!this.timeStart || !this.pause){
-                this.time += 1;
-                // console.log(this.time)
-                scoreBoard.innerHTML = `${this.displayTime(this.time)}`;
-            }
+
+        if(!this.timeStart){
+            this.timePlay = Date.now();
             this.timeStart = true;
-        },1000)       
+        }
+        if(!this.pause && !this.clear){
+            let timeNow = Date.now();
+            this.timeScore = this.time + (timeNow - this.timePlay);
+        }
+        if(this.pause && this.timeStart){
+            this.time = this.timeScore;
+            this.timeStart = false;
+        }
+        requestAnimationFrame(()=>{
+            gameInfo.querySelector(".score").innerHTML = `${this.displayTime(this.timeScore)}`;
+            this.gameScore(gameInfo);
+        })
+
     }
     displayTime(time){
-        if(time < 60){
-            return `00:00:${time}`;
-        }
-        if(time >= 60 && time < 3600){
-            return `00;${time}:00`;
-        }
+        let score = new Date(time);
+        let string = `${score.getUTCHours()}:${score.getMinutes()}:${score.getSeconds()}`;
+        return string;
     }
     gameReset(){
         this.data2 = this.gameData(this.data1);
         this.canvas.draw(this.data2);
+        this.clear  = false;
+        this.time = 0;
+        this.timeScore = 0;
+        this.timePlay = Date.now();
     }
     gameStart(gameInfo){
         let div = gameInfo.querySelector("#game_start");
