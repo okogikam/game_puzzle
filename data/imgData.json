@@ -3,30 +3,46 @@
         "imgId": "#001",
         "url": "./img/lv_1.jpeg",
         "width": "1024",
-        "height": "1024"
+        "height": "1024",
+        "condition": []
     },
     {
         "imgId": "#002",
         "url": "./img/lv_2.jpeg",
         "width": "1024",
-        "height": "1024"
+        "height": "1024",
+        "condition": []
     },
     {
         "imgId": "#003",
         "url": "./img/lv_3.jpeg",
         "width": "1024",
-        "height": "1024"
+        "height": "1024",
+        "condition": []
     },
     {
         "imgId": "#004",
         "url": "./img/lv_4.jpeg",
         "width": "1024",
-        "height": "1024"
+        "height": "1024",
+        "condition": []
     },
     {
         "imgId": "#005",
         "url": "./img/lv_5.jpeg",
         "width": "1024",
-        "height": "1024"
+        "height": "1024",
+        "condition": [
+            {"clear": 2}
+        ]
+    },
+    {
+        "imgId": "#006",
+        "url": "./img/lv_6.jpeg",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"stage": "#005"}
+        ]
     }
 ]

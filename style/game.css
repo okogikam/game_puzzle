@@ -27,3 +27,21 @@
 .game-control, .score{
     text-align: center;
 }
+.clear-dialog{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0px;
+}
+.clear-dialog .card{
+    background-color: var(--primary);
+    text-align: center;
+    width: 80%;
+}
+.clear-dialog i {
+    color: var(--dark-choclate);
+}

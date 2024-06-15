@@ -28,15 +28,16 @@
     /* background-color: var(--dark-choclate); */
 }
 #top-menu{
-    display: flex ;
-    justify-content: space-between;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    display: block;
+    z-index: 999;
     padding: 5px;
-    align-items: center;
     background-color: var(--primary);
     color: var(--choclate);
-    height: min-content;
     font-weight: 800;
-    margin-bottom: 10px;
 }
 #loading{
     position: fixed;
@@ -55,6 +56,9 @@
 #loading i{
     font-size: 3rem;
 }
+#stage-conteiner{
+    margin-top: 30px;
+}
 #stage .card{
     cursor: pointer;
     background-color: var(--primary);
@@ -68,7 +72,7 @@
     left: 0px;
     right: 0px;
 
-    background-color: var(--dark-choclate);
+    background-color: var(--secondary);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,4 +81,8 @@
     /* max-width: 80%; */
     background-color: var(--primary);
     color: var(--choclate);
+}
+.disabled{
+    cursor: not-allowed !important;
+    opacity: 0.5;
 }

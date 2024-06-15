@@ -8,6 +8,7 @@ class Main{
         this.progressReady = false;
         this.stage = [];
         this.dataUser = [];
+        this.music = [];
     }
 
     async loadData(){
@@ -28,10 +29,10 @@ class Main{
                 });
                 this.stage.push(stImage);
             });
-            // console.log(this.stage)
         }
         let dtProgres = await fetch("./data/userProgress.json");
         dtProgres = await dtProgres.json();
+
         if(dtProgres){
             this.progressReady = true;
         }
@@ -46,7 +47,6 @@ class Main{
             <i class="fa-solid fa-gear"></i>
         </button>-->`
         this.element.appendChild(userInfo);
-        console.log(this.dataUser);
     }
 
     loadGameInfo(){
@@ -64,19 +64,33 @@ class Main{
         aside.setAttribute("id","aside");
         aside.innerHTML = 
         `<div id="music">
-            <audio id="bgm" src="./musics/bgm.mp3"></audio>
-            <audio id="click" src="./musics/click.wav"></audio>
-            <audio id="clear" src="./musics/completed.wav"></audio>
+            <audio id="bgm" >
+                <source src="./musics/bgm.mp3">
+            </audio>
+            <audio id="click">
+                <source src="./musics/click_2.wav">
+            </audio>
+            <audio id="clear" >
+                <source src="./musics/completed.wav">
+            </audio>
         </div>`
         this.element.appendChild(aside);
+
+        this.music = new Music({
+            bgm: aside.querySelector("#bgm"),
+            click: aside.querySelector("#click"),
+            clear: aside.querySelector("#clear")
+        });
+        // this.music.Bgm();
     }
     async gameLoop(){
         if(!this.ready){
             this.element.innerHTML = "";
+            this.loadAside();
             this.loadUserInfo();
             this.loadGameInfo(); 
         }
-        
+        // this.updateStage();
         if(this.userReady && this.imgReady && this.progressReady){            
             this.ready = true;
             this.load.classList.add("d-none");
@@ -86,9 +100,14 @@ class Main{
             this.gameLoop();
         })
     }
+    updateStage(){
+        this.element.innerHTML = "";
+        this.loadAside();
+        this.loadUserInfo();
+        this.loadGameInfo(); 
+    }
     async init(){        
         this.loadData()        
-        this.gameLoop()    
-           
+        this.gameLoop() 
     }
 }

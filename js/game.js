@@ -13,6 +13,7 @@ class Game{
         this.pause = true;
         this.timeStart = false;
         this.time = 0;
+        this.loading =  false;
     }
 
     async loadGeme(){        
@@ -25,7 +26,7 @@ class Game{
                 <h3><button id="game_close" class="btn">
                 <i class="fa-solid fa-reply"></i>
                 </button>
-                ${this.stage.stage}</h3>
+                ${this.stage.stage.imgId}</h3>
             </div>
             <div class="p-0 m-0">
                 <img id="game_img" class="card-img" src="${this.stage.url}" alt="" style="opacity:0;">
@@ -41,7 +42,7 @@ class Game{
                     <i class="fa-solid fa-circle-info"></i>
                     </button>
                 </div>
-                    <p class="score">-:-:-</p>
+                    <p class="score">00:00:00</p>
             </div>                                                  
         </div>`
         this.stage.element.appendChild(gameInfo);
@@ -63,8 +64,12 @@ class Game{
         gameInfo.querySelector("#game_reset").addEventListener("click",()=>{        
             this.gameReset();
         })
-        gameInfo.querySelector("#game_close").addEventListener("click",()=>{        
-            gameInfo.remove();
+        gameInfo.querySelector("#game_close").addEventListener("click",()=>{   
+            if(!this.loading){
+                gameInfo.remove();
+                this.stage.music.bgmStop();
+                this.stage.main.updateStage();
+            }     
         })
         gameInfo.querySelector("#game_help").addEventListener("click",()=>{
             if(!this.pause){
@@ -77,16 +82,16 @@ class Game{
                 // gameInfo.querySelector("#game_img").setAttribute("style","display:none;")
             }       
         })
-        gameInfo.querySelector("canvas").addEventListener("click",(e)=>{
-            let cardHeaderHeight = gameInfo.querySelector(".card-header").offsetHeight;           
-            if(!this.clear && !this.pause){
+        gameInfo.querySelector("canvas").addEventListener("click",async (e)=>{
+            await this.stage.music.Click();
+            let cardHeaderHeight = gameInfo.querySelector(".card-header").offsetHeight; 
+            if(!this.clear && !this.pause){                
                 this.movePice(e.layerX,(e.layerY - cardHeaderHeight))
             }
         })
         
-        
     }
-    gameClear(){
+    async gameClear(){
         // mengecek game clear atau tidak 
         let i = 0;
         let match = 0;
@@ -97,13 +102,31 @@ class Game{
             i++;
         })
         if(match === 15){
+            this.stage.dataUser.stageClear.push(`${this.stage.stage.imgId}`)
             this.clear = true;
+            this.loading = true;
             this.canvas.drawFull();
-            setTimeout(()=>{
-                alert("game Clear");
-            },2000)
+            this.stage.music.bgmStop();
+            await this.stage.music.Clear();
+            this.stage.music.Bgm();
+            this.gameClearDialog()
+            this.loading = false;
         }
-        console.log(match)
+    }
+    gameClearDialog(){
+        let div = document.createElement("div");
+        div.classList.add("clear-dialog");
+        div.innerHTML = `
+        <div class="card p-2">
+            <h3><i class="fa-solid fa-star fa-beat"></i> Cleared <i class="fa-solid fa-star fa-beat"></i></h3>
+           <p>Score </br> 
+           ${this.displayTime(this.timeScore)}</p>
+        </div>
+        `
+        this.stage.element.appendChild(div);
+        div.addEventListener("click",()=>{
+            div.remove();
+        })
     }
     async gameScore(gameInfo){
         // mencatat skor game
@@ -128,7 +151,23 @@ class Game{
     }
     displayTime(time){
         let score = new Date(time);
-        let string = `${score.getUTCHours()}:${score.getMinutes()}:${score.getSeconds()}`;
+        let hours,minute,second;
+        if(score.getUTCHours() < 10){
+            hours = `0${score.getUTCHours()}`;
+        }else{
+            hours = score.getUTCHours()
+        }
+        if(score.getMinutes() < 10){
+            minute = `0${score.getMinutes()}`;
+        }else{
+            minute = score.getMinutes()
+        }
+        if(score.getSeconds() < 10){
+            second = `0${score.getSeconds()}`;
+        }else{
+            second = score.getSeconds()
+        }
+        let string = `${hours}:${minute}:${second}`;
         return string;
     }
     gameReset(){
@@ -151,7 +190,7 @@ class Game{
         }
         this.canvas.draw(this.data2);
     }
-   async movePice(x,y){
+   async movePice(x,y){        
         let X = Math.floor(x/(this.imgWidth/4));
         let Y = Math.floor(y/(this.imgWidth/4));
 
