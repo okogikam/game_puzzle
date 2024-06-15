@@ -44,5 +44,47 @@
         "condition": [
             {"stage": "#005"}
         ]
+    },
+    {
+        "imgId": "#007",
+        "url": "./img/lv_7.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": []
+    },
+    {
+        "imgId": "#008",
+        "url": "./img/lv_8.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": []
+    },
+    {
+        "imgId": "#009",
+        "url": "./img/lv_9.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"stage": "#008"}
+        ]
+    },
+    {
+        "imgId": "#010",
+        "url": "./img/lv_10.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"stage": "#009"}
+        ]
+    },
+    {
+        "imgId": "#011",
+        "url": "./img/lv_11.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"stage": "#008"},
+            {"stage" : "#010"}
+        ]
     }
 ]
