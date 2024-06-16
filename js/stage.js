@@ -33,7 +33,7 @@ class Stage{
 
             gameInfo.addEventListener("click",()=>{
                 this.playStage();
-                this.music.Bgm();
+                this.main.music.Bgm();
             })
         }
     }

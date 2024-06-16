@@ -76,7 +76,7 @@ class Game{
         gameInfo.querySelector("#game_close").addEventListener("click",()=>{   
             if(!this.loading){
                 gameInfo.remove();
-                this.stage.music.bgmStop();
+                this.stage.main.music.bgmStop();
                 this.stage.main.updateStage();
             }     
         })
@@ -95,7 +95,7 @@ class Game{
             }
         })
         gameInfo.querySelector("#canvas").addEventListener("click",async (e)=>{
-            await this.stage.music.Click();
+            await this.stage.main.music.Click();
             this.showHelp = false;
             let cardHeaderHeight = gameInfo.querySelector(".card-header").offsetHeight; 
             if(!this.clear && !this.pause){                
