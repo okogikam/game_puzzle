@@ -114,7 +114,7 @@ class Game{
             }
             i++;
         })
-        if(match === 0){            
+        if(match === 15){            
             this.clear = true;
             this.loading = true;
             this.canvas.drawFull();
