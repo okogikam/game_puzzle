@@ -16,7 +16,10 @@ class Main{
         dtUser = await dtUser.json();
         if(dtUser){
             this.userReady = true;
-            this.dataUser = dtUser[0];            
+            this.dataUser = dtUser[0];
+            if(localStorage.getItem("gamePuzzleProgres")){
+                this.dataUser.stageClear = localStorage.getItem("gamePuzzleProgres")
+            }            
         }
         let dtImg = await fetch("./data/imgData.json");
         dtImg = await dtImg.json();

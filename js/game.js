@@ -37,13 +37,15 @@ class Game{
                     <img id="game_img" class="card-img" src="${this.stage.url}" alt="" style="opacity:1;">
                 </div>
                 <div class="game-control col-8">
-                    <button id="game_start" class="btn">
-                    <i class="fa-solid fa-circle-play"></i>
-                    </button>
-                    <button id="game_reset" class="btn"><i class="fa-solid fa-rotate-right"></i></button>
-                    <button id="game_help" class="btn">
-                    <i class="fa-solid fa-circle-info"></i>
-                    </button>
+                    <div>
+                        <button id="game_start" class="btn">
+                        <i class="fa-solid fa-circle-play"></i>
+                        </button>
+                        <button id="game_reset" class="btn"><i class="fa-solid fa-rotate-right"></i></button>
+                        <button id="game_help" class="btn">
+                        <i class="fa-solid fa-circle-info"></i>
+                        </button>
+                    </div>
                     <p class="score">00:00:00</p>
                 </div>
             </div>                                                  
@@ -62,11 +64,14 @@ class Game{
         this.canvas.drawFull();
 
         gameInfo.querySelector("#game_start").addEventListener("click",()=>{
-            // gameInfo.querySelector("#game_img").setAttribute("style","opacity:0;")
-            this.gameStart(gameInfo);
+            if(!this.loading){
+                this.gameStart(gameInfo);
+            }
         })
-        gameInfo.querySelector("#game_reset").addEventListener("click",()=>{        
-            this.gameReset();
+        gameInfo.querySelector("#game_reset").addEventListener("click",()=>{
+            if(!this.loading){        
+                this.gameReset();
+            }
         })
         gameInfo.querySelector("#game_close").addEventListener("click",()=>{   
             if(!this.loading){
@@ -76,6 +81,9 @@ class Game{
             }     
         })
         gameInfo.querySelector("#game_help").addEventListener("click",()=>{
+            if(this.loading){
+                return
+            }
             if(!this.showHelp){
                 this.showHelp = true;
                 // gameInfo.querySelector("#game_img").setAttribute("style","display:block;")
@@ -106,12 +114,12 @@ class Game{
             }
             i++;
         })
-        if(match === 15){
-            this.stage.dataUser.stageClear.push(`${this.stage.stage.imgId}`)
+        if(match === 0){            
             this.clear = true;
             this.loading = true;
             this.canvas.drawFull();
             this.stage.music.bgmStop();
+            this.saveProgres();
             await this.stage.music.Clear();
             this.stage.music.Bgm();
             this.gameClearDialog()
@@ -216,8 +224,17 @@ class Game{
 
         this.gameClear()
     }
-    saveScore(){
+    saveProgres(){
         // menyimpan progres game 
+        // localStorage.removeItem("gamePuzzleProgres");
+        if(this.stage.dataUser.stageClear.includes(this.stage.stage.imgId)){
+            return;
+        }
+        localStorage.removeItem("gamePuzzleProgres");
+        this.stage.dataUser.stageClear.push(`${this.stage.stage.imgId}`)
+        let progres = this.stage.main.dataUser.stageClear;
+        console.log(progres)
+        localStorage.setItem("gamePuzzleProgres", [progres]);
     }
     gameData(array){
         let dataImgGame = {};

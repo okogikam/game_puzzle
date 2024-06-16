@@ -19,6 +19,17 @@
     border: 1px solid var(--dark-choclate);
     width: 100%;
 }
+.game-control{  
+    color: var(--dark-choclate);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+
+}
+.game-control i{
+    font-size: 1.5em;
+}
 .game-control, .score{
     text-align: center;
 }
