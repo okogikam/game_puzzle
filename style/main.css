@@ -13,13 +13,13 @@
     /* color: var(--secondary); */
 }
 #board{
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 #main-board{
     position: relative;
     width: 100%;
     height: 100vh;
-    overflow: auto;
+    overflow-x: hidden;
     padding: 0px;
     margin: 0px;
     background-color: var(--secondary);
@@ -76,9 +76,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 #gameBoard .card{
-    /* max-width: 80%; */
+    max-width: 350px;
     background-color: var(--primary);
     color: var(--choclate);
 }
