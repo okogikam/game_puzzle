@@ -14,6 +14,7 @@ class Game{
         this.timeStart = false;
         this.time = 0;
         this.loading =  false;
+        this.showHelp = false;
     }
 
     async loadGeme(){        
@@ -28,12 +29,14 @@ class Game{
                 </button>
                 ${this.stage.stage.imgId}</h3>
             </div>
-            <div class="p-0 m-0">
-                <img id="game_img" class="card-img" src="${this.stage.url}" alt="" style="opacity:0;">
+            <div class="p-0 m-0" id="game_display">                
                 <canvas id="canvas" width="400" height="400"></canvas>
             </div>
-            <div class="card-footer">
-                <div class="game-control">
+            <div class="card-footer row">
+                <div class="col-4">
+                    <img id="game_img" class="card-img" src="${this.stage.url}" alt="" style="opacity:1;">
+                </div>
+                <div class="game-control col-8">
                     <button id="game_start" class="btn">
                     <i class="fa-solid fa-circle-play"></i>
                     </button>
@@ -41,24 +44,25 @@ class Game{
                     <button id="game_help" class="btn">
                     <i class="fa-solid fa-circle-info"></i>
                     </button>
-                </div>
                     <p class="score">00:00:00</p>
+                </div>
             </div>                                                  
         </div>`
         this.stage.element.appendChild(gameInfo);
-        this.imgWidth = gameInfo.querySelector("#game_img").clientWidth
-        gameInfo.querySelector("#canvas").setAttribute("width",`${this.imgWidth}`)
-        gameInfo.querySelector("#canvas").setAttribute("height",`${this.imgWidth}`)
+        this.imgWidth = gameInfo.querySelector("#game_img").clientWidth;
+        let cardWidth = gameInfo.querySelector("#game_display").clientWidth;
+        gameInfo.querySelector("#canvas").setAttribute("width",`${cardWidth}`)
+        gameInfo.querySelector("#canvas").setAttribute("height",`${cardWidth}`)
 
         this.canvas = new Canvas({
             canvas: gameInfo.querySelector("#canvas"),
             img: gameInfo.querySelector("#game_img"),
-            width: this.imgWidth
+            width: cardWidth
         })
         this.canvas.drawFull();
 
         gameInfo.querySelector("#game_start").addEventListener("click",()=>{
-            gameInfo.querySelector("#game_img").setAttribute("style","opacity:0;")
+            // gameInfo.querySelector("#game_img").setAttribute("style","opacity:0;")
             this.gameStart(gameInfo);
         })
         gameInfo.querySelector("#game_reset").addEventListener("click",()=>{        
@@ -72,21 +76,22 @@ class Game{
             }     
         })
         gameInfo.querySelector("#game_help").addEventListener("click",()=>{
-            if(!this.pause){
-                this.pause = true;
+            if(!this.showHelp){
+                this.showHelp = true;
                 // gameInfo.querySelector("#game_img").setAttribute("style","display:block;")
                 this.canvas.drawFull();
             }else{
-                this.pause = false;
+                this.showHelp = false;
                 this.canvas.draw(this.data2)
                 // gameInfo.querySelector("#game_img").setAttribute("style","display:none;")
-            }       
+            }
         })
-        gameInfo.querySelector("canvas").addEventListener("click",async (e)=>{
+        gameInfo.querySelector("#canvas").addEventListener("click",async (e)=>{
             await this.stage.music.Click();
+            this.showHelp = false;
             let cardHeaderHeight = gameInfo.querySelector(".card-header").offsetHeight; 
             if(!this.clear && !this.pause){                
-                this.movePice(e.layerX,(e.layerY - cardHeaderHeight))
+                this.movePice(e.layerX,(e.layerY - cardHeaderHeight),cardWidth)
             }
         })
         
@@ -190,9 +195,9 @@ class Game{
         }
         this.canvas.draw(this.data2);
     }
-   async movePice(x,y){        
-        let X = Math.floor(x/(this.imgWidth/4));
-        let Y = Math.floor(y/(this.imgWidth/4));
+   async movePice(x,y,width){        
+        let X = Math.floor(x/(width/4));
+        let Y = Math.floor(y/(width/4));
 
         if(this.data2[`${X},${Y+1}`] == "blank"){
             this.data2[`${X},${Y+1}`] = this.data2[`${X},${Y}`];

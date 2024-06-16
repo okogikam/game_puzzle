@@ -113,5 +113,114 @@
         "condition": [
             {"stage": "#013"}
         ]
+    },
+    {
+        "imgId": "#015",
+        "url": "./img/lv_15.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"clear": 5}
+        ]
+    },
+    {
+        "imgId": "#016",
+        "url": "./img/lv_16.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"stage": "#014"}
+        ]
+    },
+    {
+        "imgId": "#017",
+        "url": "./img/lv_17.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"clear": 5}
+        ]
+    },
+    {
+        "imgId": "#018",
+        "url": "./img/lv_18.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"stage": "#016"}
+        ]
+    },
+    {
+        "imgId": "#019",
+        "url": "./img/lv_19.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"stage": "#018"}
+        ]
+    },
+    {
+        "imgId": "#020",
+        "url": "./img/lv_20.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"stage": "#019"}
+        ]
+    },
+    {
+        "imgId": "#021",
+        "url": "./img/lv_21.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"clear": 10}
+        ]
+    },
+    {
+        "imgId": "#022",
+        "url": "./img/lv_22.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"stage": "#020"}
+        ]
+    },
+    {
+        "imgId": "#023",
+        "url": "./img/lv_23.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"stage": "#022"}
+        ]
+    },
+    {
+        "imgId": "#024",
+        "url": "./img/lv_24.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"stage": "#023"}
+        ]
+    },
+    {
+        "imgId": "#025",
+        "url": "./img/lv_25.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"stage": "#024"}
+        ]
+    },
+    {
+        "imgId": "#026",
+        "url": "./img/lv_26.png",
+        "width": "1024",
+        "height": "1024",
+        "condition": [
+            {"stage": "#025"},
+            {"clear": 10}
+        ]
     }
 ]

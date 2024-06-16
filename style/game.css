@@ -13,16 +13,11 @@
     align-items: center;
 }
 #canvas{
-    /* position: absolute;
-    top: 0px;
-    left: 0px;
-    border-radius: 5px; */
+    width: 100%;
 }
 #game_img{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: -1;
+    border: 1px solid var(--dark-choclate);
+    width: 100%;
 }
 .game-control, .score{
     text-align: center;
