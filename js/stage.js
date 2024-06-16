@@ -7,7 +7,6 @@ class Stage{
         this.status = conf.status;
         this.element = conf.Main.element;
         this.music = conf.Main.music;
-        this.dataUser = conf.Main.dataUser;
         this.main = conf.Main;
     }
 
@@ -44,18 +43,18 @@ class Stage{
         for(let i = 0; i < condition.length; i++){
             Object.keys(condition[i]).forEach((index)=>{
                 if(index === "clear"){
-                    if(condition[i][index] <= this.dataUser.stageClear.length){
+                    if(condition[i][index] <= this.main.dataUser.stageClear.length){
                         cond += 1;
                     }
                 }
                 if(index === "stage"){
-                    if(this.dataUser.stageClear.includes(condition[i][index])){
+                    if(this.main.dataUser.stageClear.includes(condition[i][index])){
                         cond += 1;
                     }
                 }
             })
         }
-        if(cond == condition.length){
+        if(cond == condition.length || this.main.dataUser.userType === "GM"){
             return true;
         }else{
             return false;

@@ -1,7 +1,19 @@
-[{
-    "userId": "#001",
-    "userName": "Okogikam",
-    "email": "okogikam@gmail.com",
-    "password": "jkluio789",
-    "stageClear":[]
-}]
+[
+    {},
+    {
+        "userId": "#001",
+        "userType": "GM",
+        "userName": "okogikam",
+        "email": "okogikam@gmail.com",
+        "password": "jkluio789",
+        "stageClear":[]
+    },
+    {
+        "userId": "#002",
+        "userType": "user",
+        "userName": "test",
+        "email": "okogikam@gmail.com",
+        "password": "test",
+        "stageClear":[]
+    }
+]

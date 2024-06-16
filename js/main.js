@@ -9,20 +9,22 @@ class Main{
         this.stage = [];
         this.dataUser = [];
         this.music = [];
+        this.data = new Data()
+        this.login = new Login({
+            main: this
+        })
+        // this.loginStatus = false;
+        this.userLogin = "";
     }
 
     async loadData(){
-        let dtUser = await fetch("./data/userData.json");
-        dtUser = await dtUser.json();
+        let dtUser = await this.data.loadDataUser(this.userLogin);
+        // console.log(dtUser);
         if(dtUser){
             this.userReady = true;
-            this.dataUser = dtUser[0];
-            if(localStorage.getItem("gamePuzzleProgres")){
-                this.dataUser.stageClear = localStorage.getItem("gamePuzzleProgres")
-            }            
+            this.dataUser = dtUser;           
         }
-        let dtImg = await fetch("./data/imgData.json");
-        dtImg = await dtImg.json();
+        let dtImg = await this.data.loadDataStage();
         if(dtImg){
             this.imgReady = true;
             dtImg.forEach(img => {
@@ -42,6 +44,7 @@ class Main{
     }
 
     loadUserInfo(){
+        // console.log(this.dataUser[this.userLogin]['userName']);
         const userInfo = document.createElement("div");
         userInfo.setAttribute("id","top-menu")
         userInfo.innerHTML = 
@@ -84,19 +87,31 @@ class Main{
             click: aside.querySelector("#click"),
             clear: aside.querySelector("#clear")
         });
+        console.log(this.music.bgm)
         // this.music.Bgm();
     }
     async gameLoop(){
-        if(!this.ready){
+        if(this.login.loginStatus){
+            if(!this.ready){
+                this.userLogin = this.login.userLogin;
+                
+                await this.loadData()
+                console.log(this.dataUser)
+                this.element.innerHTML = "";
+                this.loadUserInfo();
+                this.loadGameInfo(); 
+                this.loadAside();
+            }
+            // this.updateStage();
+            if(this.userReady && this.imgReady && this.progressReady){            
+                this.ready = true;
+                this.load.classList.add("d-none");
+            }
+        }else{
             this.element.innerHTML = "";
-            this.loadAside();
-            this.loadUserInfo();
-            this.loadGameInfo(); 
-        }
-        // this.updateStage();
-        if(this.userReady && this.imgReady && this.progressReady){            
-            this.ready = true;
+            this.login.loginPage();
             this.load.classList.add("d-none");
+            return;
         }
 
         requestAnimationFrame(()=>{            
