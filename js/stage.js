@@ -19,15 +19,23 @@ class Stage{
         if(!this.ceackStageCondition(this.stage['condition'])){
             gameInfo.innerHTML = 
             `<div class="card disabled">
-                <img class="card-img" src="./img/default.jpeg" alt="">
-                <span>${this.stage.imgId}</span>
+                <div class="card-body p-0 m-0">
+                    <img class="card-img" src="./img/default.jpeg" alt="">
+                </div>
+                <div class="card-footer p-0 m-0">
+                    <span>${this.stage.imgId}</span>
+                </div>
             </div>`
             element.appendChild(gameInfo);
         }else{
             gameInfo.innerHTML = 
             `<div class="card">
-                <img class="card-img" src="${this.url}" alt="">
-                <span>${this.stage.imgId}</span>
+                <div class="card-body p-0 m-0">
+                    <img class="card-img" src="${this.url}" alt="">
+                </div>
+                <div class="card-footer p-0 m-0">
+                    <span>${this.stage.imgId}</span>
+                </div>
             </div>`
             element.appendChild(gameInfo);
 

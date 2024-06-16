@@ -108,6 +108,10 @@
     display: flex;
     justify-content: space-between;
 }
+#stage .card-body{
+    width: 100%;
+    height: 100%;
+}
 .error-ms{
     margin: 10px;
     color: var(--dark-choclate);

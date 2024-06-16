@@ -24,22 +24,25 @@ class Main{
             this.userReady = true;
             this.dataUser = dtUser;           
         }
-        let dtImg = await this.data.loadDataStage();
-        if(dtImg){
-            this.imgReady = true;
-            dtImg.forEach(img => {
-                let stImage = new Stage({
-                    Main: this,
-                    image: img
+        
+        if(this.login.loginStatus){
+            let dtImg = await this.data.loadDataStage();
+            if(dtImg){
+                this.imgReady = true;
+                dtImg.forEach(img => {
+                    let stImage = new Stage({
+                        Main: this,
+                        image: img
+                    });
+                    this.stage.push(stImage);
                 });
-                this.stage.push(stImage);
-            });
-        }
-        let dtProgres = await fetch("./data/userProgress.json");
-        dtProgres = await dtProgres.json();
-
-        if(dtProgres){
-            this.progressReady = true;
+            }
+            let dtProgres = await fetch("./data/userProgress.json");
+            dtProgres = await dtProgres.json();
+    
+            if(dtProgres){
+                this.progressReady = true;
+            }
         }
     }
 
@@ -63,6 +66,7 @@ class Main{
             st.display(stageConteiner);
         })
         this.element.appendChild(stageConteiner);
+        console.log(this.stage);
     }
 
     loadAside(){
@@ -118,6 +122,7 @@ class Main{
             this.gameLoop();
         })
     }
+
     updateStage(){
         this.element.innerHTML = "";
         this.loadAside();

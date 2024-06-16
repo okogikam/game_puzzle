@@ -114,14 +114,14 @@ class Game{
             }
             i++;
         })
-        if(match === 15){            
+        if(match === 15 || this.stage.main.dataUser.userType === "GM"){            
             this.clear = true;
             this.loading = true;
             this.canvas.drawFull();
-            this.stage.music.bgmStop();
+            this.stage.main.music.bgmStop();
             this.saveProgres();
-            await this.stage.music.Clear();
-            this.stage.music.Bgm();
+            await this.stage.main.music.Clear();
+            this.stage.main.music.Bgm();
             this.gameClearDialog()
             this.loading = false;
         }
@@ -227,11 +227,11 @@ class Game{
     saveProgres(){
         // menyimpan progres game 
         // localStorage.removeItem("gamePuzzleProgres");
-        if(this.stage.dataUser.stageClear.includes(this.stage.stage.imgId)){
+        if(this.stage.main.dataUser.stageClear.includes(this.stage.stage.imgId)){
             return;
         }
         localStorage.removeItem("gamePuzzleProgres");
-        this.stage.dataUser.stageClear.push(`${this.stage.stage.imgId}`)
+        this.stage.main.dataUser.stageClear.push(`${this.stage.stage.imgId}`)
         let progres = this.stage.main.dataUser.stageClear;
         console.log(progres)
         localStorage.setItem("gamePuzzleProgres", [progres]);

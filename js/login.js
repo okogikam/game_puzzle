@@ -27,9 +27,11 @@ class Login{
                 <button class="btn btn-primary btn-login">Login</button>
             </div>
         </div>
+        <div class="error-ms"></div>
         `
         
         this.div.querySelector(".btn-login").addEventListener("click",()=>{
+            console.log("clixk")
             this.username = this.div.querySelector("#username").value;
             this.password = this.div.querySelector("#password").value;
             if(!this.cekUser(this.username)){
@@ -65,7 +67,8 @@ class Login{
         })
     }
     errorMs(pesan){
-        this.div.innerHTML += `
+        this.div.querySelector(".error-ms").innerHTML = "";
+        this.div.querySelector(".error-ms").innerHTML = `
         <div class="error-ms">
             <p>*${pesan}</p>
         </div>
