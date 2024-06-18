@@ -8,13 +8,14 @@ class Game{
             [3,0],[3,1],[3,2],[3,3]
         ];
         this.data2 = this.gameData(this.data1);
-        this.imgWidth = 0;
         this.clear  = false;
         this.pause = true;
         this.timeStart = false;
         this.time = 0;
         this.loading =  false;
         this.showHelp = false;
+        this.piece = Number(conf.stage.stage.piece);
+        this.imgWidth = Number(conf.stage.stage.width);
     }
 
     async loadGeme(){        
@@ -51,7 +52,7 @@ class Game{
             </div>                                                  
         </div>`
         this.stage.element.appendChild(gameInfo);
-        this.imgWidth = gameInfo.querySelector("#game_img").clientWidth;
+        // this.imgWidth = gameInfo.querySelector("#game_img").clientWidth;
         let cardWidth = gameInfo.querySelector("#game_display").clientWidth;
         gameInfo.querySelector("#canvas").setAttribute("width",`${cardWidth}`)
         gameInfo.querySelector("#canvas").setAttribute("height",`${cardWidth}`)
@@ -59,7 +60,8 @@ class Game{
         this.canvas = new Canvas({
             canvas: gameInfo.querySelector("#canvas"),
             img: gameInfo.querySelector("#game_img"),
-            width: cardWidth
+            width: cardWidth,
+            game: this
         })
         this.canvas.drawFull();
 
@@ -204,8 +206,8 @@ class Game{
         this.canvas.draw(this.data2);
     }
    async movePice(x,y,width){        
-        let X = Math.floor(x/(width/4));
-        let Y = Math.floor(y/(width/4));
+        let X = Math.floor(x/(width/this.piece));
+        let Y = Math.floor(y/(width/this.piece));
 
         if(this.data2[`${X},${Y+1}`] == "blank"){
             this.data2[`${X},${Y+1}`] = this.data2[`${X},${Y}`];
@@ -227,33 +229,42 @@ class Game{
     saveProgres(){
         // menyimpan progres game 
         // localStorage.removeItem("gamePuzzleProgres");
-        if(this.stage.main.dataUser.stageClear.includes(this.stage.stage.imgId)){
+        if(this.stage.main.dataUser.stageClear.includes(this.stage.stage.imgId) || this.stage.main.dataUser.userType === "GM"){
             return;
         }
         localStorage.removeItem("gamePuzzleProgres");
         this.stage.main.dataUser.stageClear.push(`${this.stage.stage.imgId}`)
         let progres = this.stage.main.dataUser.stageClear;
-        console.log(progres)
-        localStorage.setItem("gamePuzzleProgres", [progres]);
+        // console.log(progres)
+        localStorage.setItem("dataUserGamePuzzle",JSON.stringify(this.stage.main.dataUser));
     }
     gameData(array){
+        this.piece = Number(this.stage.stage.piece);
+        this.imgWidth = Number(this.stage.stage.width);
         let dataImgGame = {};
         let index = 0;
-        for (let i = array.length - 1; i > 0; i--) { 
+        let array2 = [];
+        for(let x = 0; x < this.piece; x++){
+            for(let y = 0 ; y < this.piece; y++){
+                array2.push([x,y]);
+            }
+        }
+        for (let i = array2.length - 1; i > 0; i--) { 
             const j = Math.floor(Math.random() * (i + 1)); 
-            [array[i], array[j]] = [array[j], array[i]]; 
+            [array2[i], array2[j]] = [array2[j], array2[i]]; 
           } 
-        for(let x = 0; x < 4; x++){
-            for(let y = 0 ; y < 4; y++){
-                if(array[index] == "3,3"){
+        for(let x = 0; x < this.piece; x++){
+            for(let y = 0 ; y < this.piece; y++){
+                if(array2[index] == `${this.piece-1},${this.piece-1}`){
                     dataImgGame[`${x},${y}`] = "blank";
                 }else{
-                    dataImgGame[`${x},${y}`] = array[index];
+                    dataImgGame[`${x},${y}`] = array2[index];
                 }
 
                 index++;
             }
         }
+        console.log(dataImgGame)
         return dataImgGame; 
     }
     gameLoop(){

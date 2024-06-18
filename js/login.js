@@ -10,17 +10,45 @@ class Login{
         <div class="card-logo">
             <img class="logo" src="./img/default.jpeg" alt="">
             <span>Game Slide Puzzle</span>
-        </div>`;
+        </div>
+        <div class="form"></div>`;
+        // this.div.appendChild(webLogo);
+        if(localStorage.getItem("dataUserGamePuzzle")){
+            let dtuser = JSON.parse(localStorage.getItem("dataUserGamePuzzle"));
+            this.welcomePage({
+                div: this.div.querySelector(".form"),
+                dtuser: dtuser
+            })
+            console.log(dtuser.userName)
+        }else{
+            this.loginUserPage(this.div.querySelector(".form"));
+        }
 
-        this.newUser();
         this.main.element.appendChild(this.div);
     }
-    newUser(div){
-        this.div.innerHTML += `
+    welcomePage(conf){
+        conf.div.innerHTML = `
+        <div class="welcome-page">
+                 <button id="login" class="btn btn-sm btn-primary">Welcome Back ${conf.dtuser.userName}</button>
+                 <button id="newUser" class="btn btn-sm btn-secondary">new User</button>
+        </div>
+        <div class="error-ms"></div>`
+        conf.div.querySelector("#login").addEventListener("click",()=>{
+            this.loginUser({
+                username: conf.dtuser.userName,
+                password: conf.dtuser.password
+            })
+        })
+        conf.div.querySelector("#newUser").addEventListener("click",()=>{
+            this.loginUserPage(this.div.querySelector(".form"));
+        })
+    }
+    loginUserPage(div){
+        div.innerHTML = `
         <div class="card">
             <div class="card-body">
-                 <input id="username" class="form-control" placeholder="Username">
-                 <input id="password" class="form-control" placeholder="Pasword">
+                 <input id="username" class="form-control m-1" placeholder="Username">
+                 <input id="password" class="form-control m-1" placeholder="Pasword">
             </div>
             <div class="card-footer justify">
                 <button class="btn btn-secondary btn-signup">Signup</button>
@@ -29,11 +57,10 @@ class Login{
         </div>
         <div class="error-ms"></div>
         `
-        
-        this.div.querySelector(".btn-login").addEventListener("click",()=>{
-            console.log("clixk")
-            this.username = this.div.querySelector("#username").value;
-            this.password = this.div.querySelector("#password").value;
+        div.querySelector(".btn-login").addEventListener("click",()=>{
+            // console.log("clixk")
+            this.username = div.querySelector("#username").value;
+            this.password = div.querySelector("#password").value;
             if(!this.cekUser(this.username)){
                 this.errorMs("Username belum terdaftar");
                 return;
@@ -45,7 +72,40 @@ class Login{
             if(!this.loginStatus){
                 this.errorMs("Username atau Password salah")
             }
-        })       
+        })     
+        div.querySelector(".btn-signup").addEventListener("click",()=>{
+            this.newUser(this.div.querySelector(".form"));
+        })
+    }
+    newUser(div){
+        div.innerHTML = `
+        <div class="card">
+            <div class="card-body">
+                 <input id="username" class="form-control m-1" placeholder="Username">
+                 <input id="email" class="form-control m-1" placeholder="Email">
+                 <input id="password" class="form-control m-1" placeholder="Pasword">
+            </div>
+            <div class="card-footer justify">
+                <button class="btn btn-secondary btn-signup">Signup</button>
+            </div>
+        </div>
+        <div class="error-ms"></div>
+        `  
+        div.querySelector(".btn-signup").addEventListener("click",()=>{
+            this.username = div.querySelector("#username").value;
+            this.password = div.querySelector("#password").value;
+            this.email = div.querySelector("#email").value;
+            if(this.cekUser(this.username)){
+                this.errorMs("Username sudah terdaftar");
+                return;
+            }
+            this.main.data.saveData({
+                username: this.username,
+                password: this.password,
+                email: this.email
+            })
+            this.singupUser();
+        })  
     }
     cekUser(user){
         let userExsis = false;
@@ -65,6 +125,9 @@ class Login{
                 this.main.gameLoop();
             }
         })
+    }
+    singupUser(){
+        this.main.init();
     }
     errorMs(pesan){
         this.div.querySelector(".error-ms").innerHTML = "";

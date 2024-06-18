@@ -4,14 +4,15 @@ class Canvas{
         this.img = conf.img;
         this.ctx = this.canvas.getContext("2d");
         this.width = conf.width;
+        this.game = conf.game;
     }
 
     draw(data){
         this.ctx.clearRect(0,0,this.width,this.width);
 
         Object.keys(data).forEach(dt=>{
-            let imgWidth = Math.floor(1024/4);
-            let canvasWidth = Math.floor(this.width/4);
+            let imgWidth = Math.floor(this.game.imgWidth/this.game.piece);
+            let canvasWidth = Math.floor(this.width/this.game.piece);
             let [x,y]= dt.split(",");
             if(data[dt] != "blank"){
                 this.ctx.drawImage(
@@ -30,7 +31,7 @@ class Canvas{
     }
     drawFull(){
         this.ctx.clearRect(0,0,this.width,this.width);
-        this.ctx.drawImage(this.img,0,0,1024,1024,0,0,this.width,this.width)
+        this.ctx.drawImage(this.img,0,0,this.game.imgWidth,this.game.imgWidth,0,0,this.width,this.width)
     }
     clear(){
         this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);

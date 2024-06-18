@@ -4,20 +4,16 @@ class Data{
     }
     async loadDataUser(id){
         let dtUser = await fetch("./data/userData.json");
-        dtUser = await dtUser.json();
+        this.dtUser = await dtUser.json();
         if(localStorage.getItem("dataUserGamePuzzle")){
             let dataLocal = JSON.parse(localStorage.getItem("dataUserGamePuzzle"));
-            Object.values(dataLocal).forEach(dt=>{
-                dtUser.push(dt)
-            })
+            
+            this.dtUser.push(dataLocal)
         }
         if(id != ""){
-            if(localStorage.getItem("gamePuzzleProgres")){
-                dtUser[id].stageClear = localStorage.getItem("gamePuzzleProgres")
-            }
-            return dtUser[id];  
+            return this.dtUser[id];  
         }
-        return dtUser;
+        return this.dtUser;
     }
     async loadDataStage(){
         let dtImg = await fetch("./data/imgData.json");
@@ -30,8 +26,17 @@ class Data{
     downloadData(){
         // mengambil data di internet 
     }
-    saveData(){
-        // menyimpan data di local 
+    saveData(conf){
+        // menyimpan data di local
+        let newUser = {
+           "userId": `#${this.dtUser.length}`,
+            "userType": "user",
+            "userName": `${conf.username}`,
+            "email": `${conf.email}`,
+            "password": `${conf.password}`,
+            "stageClear":[]
+        }
+        localStorage.setItem("dataUserGamePuzzle",JSON.stringify(newUser));
     }
     clearData(){
         // menghapus data dilocal 

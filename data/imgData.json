@@ -3,35 +3,35 @@
         "imgId": "#001",
         "url": "./img/lv_1.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "3",
         "condition": []
     },
     {
         "imgId": "#002",
         "url": "./img/lv_2.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "3",
         "condition": []
     },
     {
         "imgId": "#003",
         "url": "./img/lv_3.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "3",
         "condition": []
     },
     {
         "imgId": "#004",
         "url": "./img/lv_4.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": []
     },
     {
         "imgId": "#005",
         "url": "./img/lv_5.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"clear": 2}
         ]
@@ -40,7 +40,7 @@
         "imgId": "#006",
         "url": "./img/lv_6.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#005"}
         ]
@@ -49,21 +49,21 @@
         "imgId": "#007",
         "url": "./img/lv_7.png",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": []
     },
     {
         "imgId": "#008",
         "url": "./img/lv_8.png",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": []
     },
     {
         "imgId": "#009",
         "url": "./img/lv_9.png",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#008"}
         ]
@@ -72,7 +72,7 @@
         "imgId": "#010",
         "url": "./img/lv_10.png",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#009"}
         ]
@@ -81,7 +81,7 @@
         "imgId": "#011",
         "url": "./img/lv_11.png",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#008"},
             {"stage" : "#010"}
@@ -91,7 +91,7 @@
         "imgId": "#012",
         "url": "./img/lv_12.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#011"}
         ]
@@ -100,7 +100,7 @@
         "imgId": "#013",
         "url": "./img/lv_13.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#012"}
         ]
@@ -109,7 +109,7 @@
         "imgId": "#014",
         "url": "./img/lv_14.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#013"}
         ]
@@ -118,7 +118,7 @@
         "imgId": "#015",
         "url": "./img/lv_15.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"clear": 5}
         ]
@@ -127,7 +127,7 @@
         "imgId": "#016",
         "url": "./img/lv_16.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#014"}
         ]
@@ -136,7 +136,7 @@
         "imgId": "#017",
         "url": "./img/lv_17.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"clear": 5}
         ]
@@ -145,7 +145,7 @@
         "imgId": "#018",
         "url": "./img/lv_18.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#016"}
         ]
@@ -154,7 +154,7 @@
         "imgId": "#019",
         "url": "./img/lv_19.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#018"}
         ]
@@ -163,7 +163,7 @@
         "imgId": "#020",
         "url": "./img/lv_20.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#019"}
         ]
@@ -172,7 +172,7 @@
         "imgId": "#021",
         "url": "./img/lv_21.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"clear": 10}
         ]
@@ -181,7 +181,7 @@
         "imgId": "#022",
         "url": "./img/lv_22.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#020"}
         ]
@@ -190,7 +190,7 @@
         "imgId": "#023",
         "url": "./img/lv_23.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#022"}
         ]
@@ -199,7 +199,7 @@
         "imgId": "#024",
         "url": "./img/lv_24.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#023"}
         ]
@@ -208,7 +208,7 @@
         "imgId": "#025",
         "url": "./img/lv_25.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#024"}
         ]
@@ -217,7 +217,7 @@
         "imgId": "#026",
         "url": "./img/lv_26.jpeg",
         "width": "1024",
-        "height": "1024",
+        "piece": "4",
         "condition": [
             {"stage": "#025"},
             {"clear": 10}
