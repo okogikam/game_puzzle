@@ -110,13 +110,15 @@ class Game{
         // mengecek game clear atau tidak 
         let i = 0;
         let match = 0;
+        let target = Object.keys(this.data2).length - 1;
         Object.keys(this.data2).forEach(dt=>{
             if(dt == `${this.data2[dt][0]},${this.data2[dt][1]}` && this.data2["3,3"] == "blank"){
                 match += 1;
             }
             i++;
         })
-        if(match === (this.data2.length - 1) || this.stage.main.dataUser.userType === "GM"){            
+        // console.log(target)
+        if(match === target || this.stage.main.dataUser.userType === "GM"){            
             this.clear = true;
             this.loading = true;
             this.canvas.drawFull();
@@ -264,7 +266,7 @@ class Game{
                 index++;
             }
         }
-        console.log(dataImgGame)
+        
         return dataImgGame; 
     }
     gameLoop(){
