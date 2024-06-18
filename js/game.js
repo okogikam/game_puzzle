@@ -112,7 +112,7 @@ class Game{
         let match = 0;
         let target = Object.keys(this.data2).length - 1;
         Object.keys(this.data2).forEach(dt=>{
-            if(dt == `${this.data2[dt][0]},${this.data2[dt][1]}` && this.data2["3,3"] == "blank"){
+            if(dt == `${this.data2[dt][0]},${this.data2[dt][1]}` && this.data2[`${this.piece - 1},${this.piece - 1}`] == "blank"){
                 match += 1;
             }
             i++;
