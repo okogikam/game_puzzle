@@ -116,7 +116,7 @@ class Game{
             }
             i++;
         })
-        if(match === 15 || this.stage.main.dataUser.userType === "GM"){            
+        if(match === (this.data2.length - 1) || this.stage.main.dataUser.userType === "GM"){            
             this.clear = true;
             this.loading = true;
             this.canvas.drawFull();
