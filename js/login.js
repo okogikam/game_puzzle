@@ -123,8 +123,10 @@ class Login{
                 this.loginStatus = true;
                 this.userLogin = key;
                 this.main.gameLoop();
+                this.main.data.saveData(values)
             }
         })
+
     }
     singupUser(){
         this.main.init();

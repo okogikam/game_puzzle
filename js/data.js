@@ -28,6 +28,10 @@ class Data{
     }
     saveData(conf){
         // menyimpan data di local
+        if(conf.userId){
+            localStorage.setItem("dataUserGamePuzzle",JSON.stringify(conf))
+            return;
+        }
         let newUser = {
            "userId": `#${this.dtUser.length}`,
             "userType": "user",
