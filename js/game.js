@@ -118,7 +118,7 @@ class Game{
             i++;
         })
         // console.log(target)
-        if(match === target || this.stage.main.dataUser.userType === "GM"){            
+        if(match == target || this.stage.main.dataUser.userType === "GM"){            
             this.clear = true;
             this.loading = true;
             this.canvas.drawFull();
