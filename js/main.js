@@ -25,7 +25,7 @@ class Main{
             this.dataUser = dtUser;           
         }
         
-        if(this.login.loginStatus){
+        if(this.login.loginStatus && !this.imgReady){
             let dtImg = await this.data.loadDataStage();
             if(dtImg){
                 this.imgReady = true;
