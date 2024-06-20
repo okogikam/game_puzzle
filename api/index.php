@@ -1,18 +1,43 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-
+cors();
 include "./function.php";
 
 $result = get_data_user();
 
 if(isset($_GET['api'])){
-    // $un = $_GET['data']['userName']
-    // $pw = $_GET['data']['password']
-    // $em = $_GET['data']['email']
-    // $result = saveNewUser($un,$pw,$em)
+    $username = $_GET['username'];
+    $pasword = $_GET['password'];
+    $email = $_GET['email'];
+    $result = saveNewUser($username,$pasword,$email);
     // $result = json_decode($_GET['data']);
-    echo $_GET['api'];
+    echo json_encode($result);
 }else{
     echo json_encode($result);
+}
+
+// crossorigin 
+function cors() {
+    // Allow from any origin
+    if (isset($_SERVER['HTTP_ORIGIN'])) {
+        // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
+        // you want to allow, and if so:
+        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+        header('Access-Control-Allow-Credentials: true');
+        header('Access-Control-Max-Age: 86400');    // cache for 1 day
+    }
+    
+    // Access-Control headers are received during OPTIONS requests
+    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+        
+        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+            // may also be using PUT, PATCH, HEAD etc
+            header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+        
+        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+            header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+    
+        exit(0);
+    }
 }
 ?>

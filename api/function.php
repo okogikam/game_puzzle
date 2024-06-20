@@ -23,7 +23,7 @@ function readData($result){
         $new_data[$i]['userId'] = $data['userId'];
         $new_data[$i]['userName'] = $data['userName'];
         $new_data[$i]['email'] = $data['email'];
-        $new_data[$i]['password'] = $data['password'];
+        $new_data[$i]['password'] = $data['pass'];
         $new_data[$i]['stageClear'] = makeArray($data['stageClear']);
         $new_data[$i]['userType'] = $data['userType'];
         $new_data[$i]['record'] = makeArray($data['record']);
@@ -42,28 +42,28 @@ function get_data_user(){
     $data = readData($result);
     return $data;
 }
-function saveNewUser($un,$pw,$em){
-    $query = "INSERT INTO game_puzzle_user(userName,password,email) VALUES('$un','$pw','$em')";
+function saveNewUser($user,$pass,$email){
+    $query = "INSERT INTO game_puzzle_user(userName,pass,email) VALUES('$user','$pass','$email')";
     $result = query($query);
-    // if(!$result){
-    //     $data = array(
-    //         "status"=> "0",
-    //         "pesan"=> "gagal ". $result->error
-    //     )
-    //     return $data;
-    // }
-    $data = array(
-        "status"=> "1",
-        "pesan"=>array(
-            "userName"=>$un,
-            "password"=>$pw,
-            "email"=>$em,
+    if(!$result){
+        $data = array(
+            "status"=> "0",
+            "pesan"=> "gagal ". $result->error
+        );
+        return $data;
+    }
+    $hasil = array(
+        "status" => "1",
+        "pesan" => array(
+            "userName"=>$user,
+            "password"=>$pass,
+            "email"=>$email,
             "userType"=>"user",
             "stageClear"=>array(),
             "record" => array()
         )
-    )
-    return $data;
+    );
+    return $hasil;
 }
 
 ?>
