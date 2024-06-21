@@ -5,8 +5,7 @@ class Main{
         this.ready = false;
         this.userReady = false;
         this.imgReady = false;
-        this.progressReady = false;
-        this.stage = [];
+        this.progressReady = false;        
         this.dataUser = [];
         this.music = [];
         this.data = new Data()
@@ -26,6 +25,7 @@ class Main{
         }
         
         if(this.login.loginStatus && !this.imgReady){
+            this.stage = [];
             let dtImg = await this.data.loadDataStage();
             if(dtImg){
                 this.imgReady = true;
