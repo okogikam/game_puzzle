@@ -3,7 +3,7 @@ class Data{
         // this.id = conf.id? conf.id : "";
     }
     async loadDataUser(id){
-        let dtUser = await fetch("./data/userData.json");
+        let dtUser = await fetch("./api/");
         this.dtUser = await dtUser.json();
         if(localStorage.getItem("dataUserGamePuzzle")){
             let dataLocal = JSON.parse(localStorage.getItem("dataUserGamePuzzle"));
@@ -26,14 +26,14 @@ class Data{
     downloadData(){
         // mengambil data di internet 
     }
-    saveData(conf){
+    async saveData(conf){
         // menyimpan data di local
         if(conf.userId){
             localStorage.setItem("dataUserGamePuzzle",JSON.stringify(conf))
             return;
         }
         let newUser = {
-           "userId": `#${this.dtUser.length}`,
+           "userId": `#${conf.userId}`,
             "userType": "user",
             "userName": `${conf.username}`,
             "email": `${conf.email}`,
@@ -41,6 +41,8 @@ class Data{
             "stageClear":[]
         }
         localStorage.setItem("dataUserGamePuzzle",JSON.stringify(newUser));
+        let saveOnline = await fetch(`./api/?api=saveNewUser&username=${conf.username}&email=${conf.email}&password=${conf.password}`);
+        console.log(conf.userId)
     }
     clearData(){
         // menghapus data dilocal 

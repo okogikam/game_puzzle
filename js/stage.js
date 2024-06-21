@@ -20,7 +20,7 @@ class Stage{
             gameInfo.innerHTML = 
             `<div class="card disabled">
                 <div class="card-body p-0 m-0">
-                    <img class="card-img" src="./img/default.jpeg" alt="">
+                    <img class="card-img" src="./img/default.png" alt="">
                 </div>
                 <div class="card-footer p-0 m-0">
                     <span>${this.stage.imgId}</span>
