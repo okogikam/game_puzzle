@@ -89,8 +89,8 @@
     },
     {
         "imgId": "#012",
-        "url": "./img/lv_12.jpeg",
-        "width": "1024",
+        "url": "./img/lv_12.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"stage": "#011"}
@@ -98,8 +98,8 @@
     },
     {
         "imgId": "#013",
-        "url": "./img/lv_13.jpeg",
-        "width": "1024",
+        "url": "./img/lv_13.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"stage": "#012"}
