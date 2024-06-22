@@ -1,12 +1,7 @@
 class Game{
     constructor(conf){
         this.stage = conf.stage;
-        this.data1 = [
-            [0,0],[0,1],[0,2],[0,3],
-            [1,0],[1,1],[1,2],[1,3],
-            [2,0],[2,1],[2,2],[2,3],
-            [3,0],[3,1],[3,2],[3,3]
-        ];
+        this.data1 = [];
         this.data2 = this.gameData(this.data1);
         this.clear  = false;
         this.pause = true;
@@ -71,7 +66,7 @@ class Game{
             }
         })
         gameInfo.querySelector("#game_reset").addEventListener("click",()=>{
-            if(!this.loading){        
+            if(!this.loading || this.timeStart){        
                 this.gameReset();
             }
         })
@@ -83,7 +78,7 @@ class Game{
             }     
         })
         gameInfo.querySelector("#game_help").addEventListener("click",()=>{
-            if(this.loading){
+            if(this.loading || this.timeStart ){
                 return
             }
             if(!this.showHelp){
@@ -249,6 +244,7 @@ class Game{
         for(let x = 0; x < this.piece; x++){
             for(let y = 0 ; y < this.piece; y++){
                 array2.push([x,y]);
+                this.data1.push([x, y]);
             }
         }
         for (let i = array2.length - 1; i > 0; i--) { 
@@ -266,6 +262,10 @@ class Game{
                 index++;
             }
         }
+
+        console.log(this.data1);
+        console.log(dataImgGame);
+
         
         return dataImgGame; 
     }

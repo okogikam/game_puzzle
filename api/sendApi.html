@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Request API</title>
+</head>
+<body>
+    <button id="send">Send Request</button>
+    <button id="newUser">New User</button>
+    <button id="saveProgres">Save Progeress</button>
+    <div class="result"></div>
+
+    <script>
+        let btnSend = document.querySelector("#send");
+        let btnNewUser = document.querySelector("#newUser");
+        let btnSaveProgres = document.querySelector("#saveProgres");
+        let result = document.querySelector(".result");
+
+        btnSend.addEventListener("click",async ()=>{
+            publish();
+        })
+
+        btnNewUser.addEventListener("click",async ()=>{
+            newUser();
+        })
+
+        btnSaveProgres.addEventListener("click",async ()=>{
+            saveProgres();
+        })
+
+        async function publish(){
+            let formData = new FormData();
+            formData.append('x', 'hello');
+            try{
+                const respons = await fetch("index.php",{
+                    method: "POST",
+                    body: formData
+                })
+                result = await respons.json();
+                console.log(result);
+                
+            } catch(e){
+                // status.innerHTML = `<i class='fa-solid fa-circle-exclamation'></i> Gagal disimpan: ${e}`;
+                console.error(e)
+            }
+        }
+        async function newUser(){
+            let formData = new FormData();
+            formData.append('userName', 'hello');
+            formData.append('email', 'hello');
+            formData.append('password', 'hello');
+            try{
+                const respons = await fetch("index.php?api=newuser",{
+                    method: "POST",
+                    body: formData
+                })
+                result = await respons.json();
+                console.log(result);
+                
+            } catch(e){
+                // status.innerHTML = `<i class='fa-solid fa-circle-exclamation'></i> Gagal disimpan: ${e}`;
+                console.error(e)
+            }
+        }
+        async function saveProgres(){
+            let formData = new FormData();
+            formData.append('userId', 'id');
+            formData.append('progres', 'stageId');
+            formData.append('score', 'stageId dan score');
+            try{
+                const respons = await fetch("index.php?api=saveprogres",{
+                    method: "POST",
+                    body: formData
+                })
+                result = await respons.json();
+                console.log(result);
+                
+            } catch(e){
+                // status.innerHTML = `<i class='fa-solid fa-circle-exclamation'></i> Gagal disimpan: ${e}`;
+                console.error(e)
+            }
+        }
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@ class Data{
         // this.id = conf.id? conf.id : "";
     }
     async loadDataUser(id){
-        let dtUser = await fetch("./api/");
+        let dtUser = await fetch("./data/userData.json");
         this.dtUser = await dtUser.json();
         if(localStorage.getItem("dataUserGamePuzzle")){
             let dataLocal = JSON.parse(localStorage.getItem("dataUserGamePuzzle"));
@@ -41,8 +41,11 @@ class Data{
             "stageClear":[]
         }
         localStorage.setItem("dataUserGamePuzzle",JSON.stringify(newUser));
-        let saveOnline = await fetch(`./api/?api=saveNewUser&username=${conf.username}&email=${conf.email}&password=${conf.password}`);
-        console.log(conf.userId)
+        // let saveOnline = await fetch(`./api/?api=saveNewUser&username=${conf.username}&email=${conf.email}&password=${conf.password}`);
+        // let saveOnline = await fetch(`./api/?api=saveNewUser`);
+        // let dataReturn = await saveOnline.json();
+
+        // console.log(dataReturn)
     }
     clearData(){
         // menghapus data dilocal 
