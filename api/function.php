@@ -42,28 +42,72 @@ function get_data_user(){
     $data = readData($result);
     return $data;
 }
-function saveNewUser($user,$pass,$email){
-    $query = "INSERT INTO game_puzzle_user(userName,pass,email) VALUES('$user','$pass','$email')";
+function openuserData($userName){
+    $query = "SELECT * FROM game_puzzle_user WHERE userName='$userName'";
     $result = query($query);
-    if(!$result){
+    $data = readData($result);
+    return $data;
+}
+function cekuserData($condition){
+    $query = "SELECT * FROM game_puzzle_user WHERE $condition";
+    $result = query($query);
+    if($result->num_rows === 0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+// save new user 
+function saveNewUser($user,$pass,$email){
+    $cekUser = cekuserData("userName='$user'");
+    if(!$cekUser){
         $data = array(
             "status"=> "0",
-            "pesan"=> "gagal ". $result->error
+            "pesan"=> "user sudah ada "
         );
         return $data;
     }
+
+    $query = "INSERT INTO game_puzzle_user(userName,pass,email) VALUES('$user','$pass','$email')";
+    $result = query($query);
+
+    $userData = openuserData($user);
+    
     $hasil = array(
         "status" => "1",
-        "pesan" => array(
-            "userName"=>$user,
-            "password"=>$pass,
-            "email"=>$email,
-            "userType"=>"user",
-            "stageClear"=>array(),
-            "record" => array()
-        )
+        "pesan" => $userData
     );
     return $hasil;
 }
 
+function saveProgresUser($user,$progres,$score){
+    $cekUser = cekuserData("userName='$user'");
+    if($cekUser){
+        $data = array(
+            "status"=> "0",
+            "pesan"=> "user belum ada "
+        );
+        return $data;
+    }
+    $userData = openuserData($user);
+    if(!in_array($progres,$userData[0]['stageClear'])){
+        array_push($userData[0]['stageClear'],$progres);
+        $updateProgres = updateData($user,"stageClear",$userData[0]['stageClear']);
+    }
+    
+    array_push($userData[0]['record'],$score);
+    $updateScore = updateData($user,"record",$userData[0]['record']);
+    $hasil = array(
+        "status" => "1",
+        "pesan" => $userData    
+    );
+    return $hasil;
+}
+function updateData($user,$key,$data){
+    $progres = implode(",",$data);
+    $query = "UPDATE game_puzzle_user SET $key='$progres' WHERE userName='$user'";
+    $result = query($query);
+    return $result;
+}
 ?>

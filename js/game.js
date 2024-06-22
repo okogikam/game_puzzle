@@ -201,6 +201,7 @@ class Game{
             div.innerHTML = `<i class="fa-solid fa-circle-play"></i>`;  
         }
         this.canvas.draw(this.data2);
+        // console.log(this.stage.main.data.saveProgresOnline());
     }
    async movePice(x,y,width){        
         let X = Math.floor(x/(width/this.piece));
@@ -226,13 +227,16 @@ class Game{
     saveProgres(){
         // menyimpan progres game 
         // localStorage.removeItem("gamePuzzleProgres");
-        if(this.stage.main.dataUser.stageClear.includes(this.stage.stage.imgId) || this.stage.main.dataUser.userType === "GM"){
+        if(this.stage.main.dataUser.userType === "GM"){
             return;
-        }
+        }   
         localStorage.removeItem("gamePuzzleProgres");
         this.stage.main.dataUser.stageClear.push(`${this.stage.stage.imgId}`)
-        let progres = this.stage.main.dataUser.stageClear;
-        // console.log(progres)
+        this.stage.main.data.saveProgresOnline({
+            username: this.stage.main.dataUser.userName,
+            progres: this.stage.stage.imgId,
+            score: `${this.stage.stage.imgId}:${this.displayTime(this.timeScore)}`
+        });
         localStorage.setItem("dataUserGamePuzzle",JSON.stringify(this.stage.main.dataUser));
     }
     gameData(array){

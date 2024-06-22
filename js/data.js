@@ -3,15 +3,11 @@ class Data{
         // this.id = conf.id? conf.id : "";
     }
     async loadDataUser(id){
-        let dtUser = await fetch("./data/userData.json");
-        this.dtUser = await dtUser.json();
-        if(localStorage.getItem("dataUserGamePuzzle")){
-            let dataLocal = JSON.parse(localStorage.getItem("dataUserGamePuzzle"));
-            
-            this.dtUser.push(dataLocal)
-        }
+        let dtUser = await fetch("https://habaranime.info/api/game_puzzle/");
+        this.dtUser = await dtUser.json();        
+        
         if(id != ""){
-            return this.dtUser[id];  
+            return this.dtUser[id];
         }
         return this.dtUser;
     }
@@ -32,6 +28,7 @@ class Data{
             localStorage.setItem("dataUserGamePuzzle",JSON.stringify(conf))
             return;
         }
+
         let newUser = {
            "userId": `#${conf.userId}`,
             "userType": "user",
@@ -40,12 +37,47 @@ class Data{
             "password": `${conf.password}`,
             "stageClear":[]
         }
-        localStorage.setItem("dataUserGamePuzzle",JSON.stringify(newUser));
-        // let saveOnline = await fetch(`./api/?api=saveNewUser&username=${conf.username}&email=${conf.email}&password=${conf.password}`);
-        // let saveOnline = await fetch(`./api/?api=saveNewUser`);
-        // let dataReturn = await saveOnline.json();
+        this.saveDataOnline(conf.username,conf.password,conf.email);
 
-        // console.log(dataReturn)
+        localStorage.setItem("dataUserGamePuzzle",JSON.stringify(newUser));
+    }
+    async saveDataOnline(username,pass,email){
+        let formData = new FormData();
+            formData.append('userName', `${username}`);
+            formData.append('email', `${email}`);
+            formData.append('password', `${pass}`);
+            try{
+                const respons = await fetch("https://habaranime.info/api/game_puzzle/?api=newuser",{
+                    method: "POST",
+                    body: formData
+                })
+               let result = await respons.json();
+                console.log(result);
+                
+            } catch(e){
+                // status.innerHTML = `<i class='fa-solid fa-circle-exclamation'></i> Gagal disimpan: ${e}`;
+                console.error(e)
+            }
+        
+    }
+    async saveProgresOnline(conf){
+        let formData = new FormData();
+            formData.append('userName', `${conf.username}`);
+            formData.append('progres', `${conf.progres}`);
+            formData.append('score', conf.score);
+            try{
+                const respons = await fetch("https://habaranime.info/api/game_puzzle/?api=saveprogres",{
+                    method: "POST",
+                    body: formData
+                })
+                let result = await respons.json();
+                console.log(result);
+                
+            } catch(e){
+                // status.innerHTML = `<i class='fa-solid fa-circle-exclamation'></i> Gagal disimpan: ${e}`;
+                console.error(e)
+            }
+        // console.log(formData);
     }
     clearData(){
         // menghapus data dilocal 

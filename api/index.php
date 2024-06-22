@@ -6,24 +6,16 @@ if(isset($_GET['api'])){
     $result = get_data_user();
     
     if($_GET['api'] === "newuser"){
-        $post = array(
-            "userName"=>$_POST['userName'],
-            "email"=>$_POST['email'],
-            "password"=>$_POST['password'],
-        );
+        $post = saveNewUser($_POST['userName'],$_POST['password'],$_POST['email']);
         echo json_encode($post);
-        // echo $_POST["x"];
     }
     if($_GET['api'] === "saveprogres"){
-        $post = array(
-            "userId"=>$_POST['userId'],
-            "progres"=>$_POST['progres'],
-            "score"=>$_POST['score'],
-        );
+        $post = saveProgresUser($_POST['userName'],$_POST['progres'],$_POST['score']);
         echo json_encode($post);
     }
 }else{
-    echo json_encode('ok');
+    $result = get_data_user();
+    echo json_encode($result);
 }
 
 ?>

@@ -51,7 +51,7 @@
             formData.append('email', 'hello');
             formData.append('password', 'hello');
             try{
-                const respons = await fetch("index.php?api=newuser",{
+                const respons = await fetch("https://habaranime.info/api/game_puzzle/?api=newuser",{
                     method: "POST",
                     body: formData
                 })
@@ -65,9 +65,9 @@
         }
         async function saveProgres(){
             let formData = new FormData();
-            formData.append('userId', 'id');
-            formData.append('progres', 'stageId');
-            formData.append('score', 'stageId dan score');
+            formData.append('userName', 'test');
+            formData.append('progres', '#014');
+            formData.append('score', '#003:00:00:22');
             try{
                 const respons = await fetch("index.php?api=saveprogres",{
                     method: "POST",

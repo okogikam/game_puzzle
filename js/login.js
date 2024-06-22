@@ -19,7 +19,7 @@ class Login{
                 div: this.div.querySelector(".form"),
                 dtuser: dtuser
             })
-            console.log(dtuser.userName)
+            // console.log(dtuser.userName)
         }else{
             this.loginUserPage(this.div.querySelector(".form"));
         }
@@ -126,7 +126,6 @@ class Login{
                 this.main.data.saveData(values)
             }
         })
-
     }
     singupUser(){
         this.main.init();

@@ -18,13 +18,15 @@ class Main{
 
     async loadData(){
         let dtUser = await this.data.loadDataUser(this.userLogin);
-        // console.log(dtUser);
+        
         if(dtUser){
             this.userReady = true;
-            this.dataUser = dtUser;           
+            this.dataUser = dtUser;
+            console.log(this.dataUser)           
         }
         
         if(this.login.loginStatus && !this.imgReady){
+            this.imgReady = true;
             this.stage = [];
             let dtImg = await this.data.loadDataStage();
             if(dtImg){
@@ -66,7 +68,6 @@ class Main{
             st.display(stageConteiner);
         })
         this.element.appendChild(stageConteiner);
-        console.log(this.stage);
     }
 
     loadAside(){
@@ -91,7 +92,7 @@ class Main{
             click: aside.querySelector("#click"),
             clear: aside.querySelector("#clear")
         });
-        console.log(this.music.bgm)
+        
         // this.music.Bgm();
     }
     async gameLoop(){
@@ -100,7 +101,7 @@ class Main{
                 this.userLogin = this.login.userLogin;
                 
                 await this.loadData()
-                console.log(this.dataUser)
+                
                 this.element.innerHTML = "";
                 this.loadUserInfo();
                 this.loadGameInfo(); 
