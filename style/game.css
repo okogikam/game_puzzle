@@ -47,6 +47,7 @@
     background-color: var(--primary);
     text-align: center;
     width: 80%;
+    max-width: 300px;
 }
 .clear-dialog i {
     color: var(--dark-choclate);

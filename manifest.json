@@ -1,0 +1,25 @@
+{
+  "short_name": "GameSP",
+  "name": "game_puzzle",
+  "icons": [
+    {
+      "src": "/game_puzzle/img/icon-sm.png",
+      "type": "image/png",
+      "sizes": "144x144",
+      "purpose": "any"
+    },
+    {
+      "src": "/game_puzzle/img/icon-md.png",
+      "type": "image/png",
+      "sizes": "400x400",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "/game_puzzle/index.html",
+  "background_color": "#543310",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/game_puzzle",
+  "theme_color": "#AF8F6F",
+  "crossorigin": "use-credetials"
+}
