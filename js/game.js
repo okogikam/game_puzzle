@@ -2,10 +2,11 @@ class Game{
     constructor(conf){
         this.stage = conf.stage;
         this.data1 = [];
-        this.data2 = this.gameData(this.data1);
+        // this.data2 = this.gameData(this.data1);
         this.clear  = false;
         this.pause = true;
         this.timeStart = false;
+        this.gameHasStarted = false;
         this.time = 0;
         this.loading =  false;
         this.showHelp = false;
@@ -15,6 +16,7 @@ class Game{
 
     async loadGeme(){        
         // menyiapkan game 
+        this.gameData();
         const gameInfo = document.createElement("div");
         gameInfo.setAttribute("id","gameBoard");
         gameInfo.innerHTML = 
@@ -63,11 +65,15 @@ class Game{
         gameInfo.querySelector("#game_start").addEventListener("click",()=>{
             if(!this.loading){
                 this.gameStart(gameInfo);
+                this.gameHasStarted = true;
             }
         })
         gameInfo.querySelector("#game_reset").addEventListener("click",()=>{
-            if(!this.loading || this.timeStart){        
-                this.gameReset();
+            if(!this.gameHasStarted){
+                return
+            }
+            if(!this.loading){ 
+                this.gameReset();                       
             }
         })
         gameInfo.querySelector("#game_close").addEventListener("click",()=>{   
@@ -78,7 +84,7 @@ class Game{
             }     
         })
         gameInfo.querySelector("#game_help").addEventListener("click",()=>{
-            if(this.loading || this.timeStart ){
+            if(this.loading || !this.gameHasStarted ){
                 return
             }
             if(!this.showHelp){
@@ -182,13 +188,14 @@ class Game{
         let string = `${hours}:${minute}:${second}`;
         return string;
     }
-    gameReset(){
-        this.data2 = this.gameData(this.data1);
-        this.canvas.draw(this.data2);
+    async gameReset(){
+        this.gameData();
+        
         this.clear  = false;
         this.time = 0;
         this.timeScore = 0;
         this.timePlay = Date.now();
+        this.canvas.draw(this.data2);
     }
     gameStart(gameInfo){
         let div = gameInfo.querySelector("#game_start");
@@ -235,7 +242,7 @@ class Game{
         this.stage.main.data.saveProgresOnline({
             username: this.stage.main.dataUser.userName,
             progres: this.stage.stage.imgId,
-            score: `${this.stage.stage.imgId}:${this.displayTime(this.timeScore)}`
+            score: `${this.stage.stage.imgId}:${this.timeScore}`
         });
         localStorage.setItem("dataUserGamePuzzle",JSON.stringify(this.stage.main.dataUser));
     }
@@ -267,31 +274,44 @@ class Game{
                 index++;
             }
         }
-
-        console.log(this.data1);
-        this.cekGameArray(array1,dataImgGame);        
-        return dataImgGame; 
+        if(this.cekGameArray(array1,dataImgGame)){
+            this.data2 = dataImgGame
+            return
+        }
+        requestAnimationFrame(()=>{
+            this.gameData();
+        })        
     }
     cekGameArray(array1,array2){
         let dat1 = [];
-        let index = 0;
-        let beda = 0;
-        Object.values(array2).forEach(dt=>{
-            dat1.push(dt);
+        let index = [];
+        let beda = -1;
+        Object.values(array2).forEach((dt,key)=>{
+            if(dt !== "blank"){
+                let j = array1.indexOf(dt);
+                dat1.push(j+1);
+            }
+            if(this.piece === 4 && dt === "blank"){
+                beda += Math.floor(key/4);
+                console.log(Math.floor(key/4));
+            }
         })
-        for(let i = 0; i < array1.length - 2; i++){
-            if(dat1[index] == "blank"){
-                index++;
+        for(let i = 0; i < dat1.length - 1; i++){
+            for(let j = i; j < dat1.length; j++){
+                if(dat1[i] > dat1[j]){
+                    beda++;
+                    index.push(`${dat1[i]}-${dat1[j]}`);
+                }
             }
-            if(array1[i] != dat1[index] && array1[i+1] != dat1[index+1]){
-                beda++;
-            }
-            index++;
         }
-
-        console.log(beda);
-        console.log(dat1);
-        console.log(array1);
+        if(beda%2 === 0){
+            console.log(beda);
+            console.log('ok')
+            return true;
+        }else{
+            // console.log(beda);
+            return false;
+        }
     }
     gameLoop(){
         // game loop 
