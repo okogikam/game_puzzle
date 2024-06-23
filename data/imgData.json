@@ -107,8 +107,8 @@
     },
     {
         "imgId": "#014",
-        "url": "./img/lv_14.jpeg",
-        "width": "1024",
+        "url": "./img/lv_14.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"stage": "#013"}
@@ -116,8 +116,8 @@
     },
     {
         "imgId": "#015",
-        "url": "./img/lv_15.jpeg",
-        "width": "1024",
+        "url": "./img/lv_15.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"clear": 5}
@@ -125,8 +125,8 @@
     },
     {
         "imgId": "#016",
-        "url": "./img/lv_16.jpeg",
-        "width": "1024",
+        "url": "./img/lv_16.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"stage": "#014"}
@@ -134,8 +134,8 @@
     },
     {
         "imgId": "#017",
-        "url": "./img/lv_17.jpeg",
-        "width": "1024",
+        "url": "./img/lv_17.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"clear": 5}
@@ -143,8 +143,8 @@
     },
     {
         "imgId": "#018",
-        "url": "./img/lv_18.jpeg",
-        "width": "1024",
+        "url": "./img/lv_18.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"stage": "#016"}
@@ -152,8 +152,8 @@
     },
     {
         "imgId": "#019",
-        "url": "./img/lv_19.jpeg",
-        "width": "1024",
+        "url": "./img/lv_19.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"stage": "#018"}
@@ -161,8 +161,8 @@
     },
     {
         "imgId": "#020",
-        "url": "./img/lv_20.jpeg",
-        "width": "1024",
+        "url": "./img/lv_20.png",
+        "width": "768",
         "piece": "4",
         "condition": [
             {"stage": "#019"}
@@ -170,8 +170,8 @@
     },
     {
         "imgId": "#021",
-        "url": "./img/lv_21.jpeg",
-        "width": "1024",
+        "url": "./img/lv_21.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"clear": 10}
@@ -179,8 +179,8 @@
     },
     {
         "imgId": "#022",
-        "url": "./img/lv_22.jpeg",
-        "width": "1024",
+        "url": "./img/lv_22.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"stage": "#020"}
@@ -188,8 +188,8 @@
     },
     {
         "imgId": "#023",
-        "url": "./img/lv_23.jpeg",
-        "width": "1024",
+        "url": "./img/lv_23.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"stage": "#022"}
@@ -197,8 +197,8 @@
     },
     {
         "imgId": "#024",
-        "url": "./img/lv_24.jpeg",
-        "width": "1024",
+        "url": "./img/lv_24.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"stage": "#023"}
@@ -206,8 +206,8 @@
     },
     {
         "imgId": "#025",
-        "url": "./img/lv_25.jpeg",
-        "width": "1024",
+        "url": "./img/lv_25.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"stage": "#024"}
@@ -215,12 +215,322 @@
     },
     {
         "imgId": "#026",
-        "url": "./img/lv_26.jpeg",
-        "width": "1024",
+        "url": "./img/lv_26.png",
+        "width": "512",
         "piece": "4",
         "condition": [
             {"stage": "#025"},
             {"clear": 10}
+        ]
+    },
+    {
+        "imgId": "#027",
+        "url": "./img/lv_27.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#026"}
+        ]
+    },
+    {
+        "imgId": "#028",
+        "url": "./img/lv_28.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#027"}
+        ]
+    },
+    {
+        "imgId": "#029",
+        "url": "./img/lv_29.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#028"}
+        ]
+    },
+    {
+        "imgId": "#030",
+        "url": "./img/lv_30.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#030"}
+        ]
+    },
+    {
+        "imgId": "#031",
+        "url": "./img/lv_31.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#028"},
+            {"clear": 15}
+        ]
+    },
+    {
+        "imgId": "#032",
+        "url": "./img/lv_32.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#031"}
+        ]
+    },
+    {
+        "imgId": "#033",
+        "url": "./img/lv_33.webp",
+        "width": "768",
+        "piece": "4",
+        "condition": [
+            {"stage": "#032"}
+        ]
+    },
+    {
+        "imgId": "#034",
+        "url": "./img/lv_34.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#033"}
+        ]
+    },
+    {
+        "imgId": "#035",
+        "url": "./img/lv_35.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#034"}
+        ]
+    },
+    {
+        "imgId": "#036",
+        "url": "./img/lv_36.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#035"}
+        ]
+    },
+    {
+        "imgId": "#037",
+        "url": "./img/lv_37.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#036"}
+        ]
+    },
+    {
+        "imgId": "#038",
+        "url": "./img/lv_38.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#037"}
+        ]
+    },
+    {
+        "imgId": "#039",
+        "url": "./img/lv_39.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#038"}
+        ]
+    },
+    {
+        "imgId": "#040",
+        "url": "./img/lv_40.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#039"}
+        ]
+    },
+    {
+        "imgId": "#041",
+        "url": "./img/lv_41.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#037"},
+            {"clear": 35}
+        ]
+    },
+    {
+        "imgId": "#042",
+        "url": "./img/lv_42.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#041"}
+        ]
+    },
+    {
+        "imgId": "#043",
+        "url": "./img/lv_43.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#042"}
+        ]
+    },
+    {
+        "imgId": "#044",
+        "url": "./img/lv_44.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#043"}
+        ]
+    },
+    {
+        "imgId": "#045",
+        "url": "./img/lv_45.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#044"}
+        ]
+    },
+    {
+        "imgId": "#046",
+        "url": "./img/lv_46.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#045"}
+        ]
+    },
+    {
+        "imgId": "#047",
+        "url": "./img/lv_47.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#046"}
+        ]
+    },
+    {
+        "imgId": "#048",
+        "url": "./img/lv_48.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#047"}
+        ]
+    },
+    {
+        "imgId": "#049",
+        "url": "./img/lv_49.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#048"}
+        ]
+    },
+    {
+        "imgId": "#050",
+        "url": "./img/lv_50.png",
+        "width": "768",
+        "piece": "4",
+        "condition": [
+            {"stage": "#049"}
+        ]
+    },
+    {
+        "imgId": "#051",
+        "url": "./img/lv_51.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#045"},
+            {"clear": 47}
+        ]
+    },
+    {
+        "imgId": "#052",
+        "url": "./img/lv_52.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#051"}
+        ]
+    },
+    {
+        "imgId": "#053",
+        "url": "./img/lv_53.png",
+        "width": "768",
+        "piece": "4",
+        "condition": [
+            {"stage": "#052"}
+        ]
+    },
+    {
+        "imgId": "#054",
+        "url": "./img/lv_54.png",
+        "width": "768",
+        "piece": "4",
+        "condition": [
+            {"stage": "#053"}
+        ]
+    },
+    {
+        "imgId": "#055",
+        "url": "./img/lv_55.png",
+        "width": "768",
+        "piece": "4",
+        "condition": [
+            {"stage": "#054"}
+        ]
+    },
+    {
+        "imgId": "#056",
+        "url": "./img/lv_56.png",
+        "width": "768",
+        "piece": "4",
+        "condition": [
+            {"stage": "#055"}
+        ]
+    },
+    {
+        "imgId": "#057",
+        "url": "./img/lv_57.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#056"}
+        ]
+    },
+    {
+        "imgId": "#058",
+        "url": "./img/lv_58.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#057"}
+        ]
+    },
+    {
+        "imgId": "#059",
+        "url": "./img/lv_59.png",
+        "width": "512",
+        "piece": "4",
+        "condition": [
+            {"stage": "#058"}
+        ]
+    },
+    {
+        "imgId": "#060",
+        "url": "./img/lv_60.png",
+        "width": "768",
+        "piece": "4",
+        "condition": [
+            {"stage": "#059"},
+            {"clear": 55}
         ]
     }
 ]

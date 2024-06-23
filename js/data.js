@@ -6,7 +6,10 @@ class Data{
         let dtUser = await fetch("https://habaranime.info/api/game_puzzle/");
         this.dtUser = await dtUser.json();        
         
-        if(id != ""){
+        // if(id == 0){
+        //     return this.dtUser[0];
+        // }
+        if(id !== ""){
             return this.dtUser[id];
         }
         return this.dtUser;

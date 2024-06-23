@@ -248,9 +248,10 @@ class Game{
         for(let x = 0; x < this.piece; x++){
             for(let y = 0 ; y < this.piece; y++){
                 array2.push([x,y]);
-                this.data1.push([x, y]);
+                // this.data1.push([y, x]);
             }
         }
+        let array1 = [...array2];
         for (let i = array2.length - 1; i > 0; i--) { 
             const j = Math.floor(Math.random() * (i + 1)); 
             [array2[i], array2[j]] = [array2[j], array2[i]]; 
@@ -258,9 +259,9 @@ class Game{
         for(let x = 0; x < this.piece; x++){
             for(let y = 0 ; y < this.piece; y++){
                 if(array2[index] == `${this.piece-1},${this.piece-1}`){
-                    dataImgGame[`${x},${y}`] = "blank";
+                    dataImgGame[`${y},${x}`] = "blank";
                 }else{
-                    dataImgGame[`${x},${y}`] = array2[index];
+                    dataImgGame[`${y},${x}`] = array2[index];
                 }
 
                 index++;
@@ -268,10 +269,29 @@ class Game{
         }
 
         console.log(this.data1);
-        console.log(dataImgGame);
-
-        
+        this.cekGameArray(array1,dataImgGame);        
         return dataImgGame; 
+    }
+    cekGameArray(array1,array2){
+        let dat1 = [];
+        let index = 0;
+        let beda = 0;
+        Object.values(array2).forEach(dt=>{
+            dat1.push(dt);
+        })
+        for(let i = 0; i < array1.length - 2; i++){
+            if(dat1[index] == "blank"){
+                index++;
+            }
+            if(array1[i] != dat1[index] && array1[i+1] != dat1[index+1]){
+                beda++;
+            }
+            index++;
+        }
+
+        console.log(beda);
+        console.log(dat1);
+        console.log(array1);
     }
     gameLoop(){
         // game loop 
