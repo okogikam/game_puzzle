@@ -21,16 +21,17 @@ class Game{
         gameInfo.setAttribute("id","gameBoard");
         gameInfo.innerHTML = 
         `<div class="card">
-            <div class="card-header p-0">
+            <div class="card-header">
                 <h3><button id="game_close" class="btn">
                 <i class="fa-solid fa-reply"></i>
                 </button>
                 ${this.stage.stage.imgId}</h3>
             </div>
-            <div class="p-0 m-0" id="game_display">                
+            <div class="card-body p-0 m-0" id="game_display">                
                 <canvas id="canvas" width="400" height="400"></canvas>
             </div>
-            <div class="card-footer row">
+            <div class="card-footer">
+              <div class="row">
                 <div class="col-4">
                     <img id="game_img" class="card-img" src="${this.stage.url}" alt="" style="opacity:1;">
                 </div>
@@ -46,6 +47,7 @@ class Game{
                     </div>
                     <p class="score">00:00:00</p>
                 </div>
+              </div>
             </div>                                                  
         </div>`
         this.stage.element.appendChild(gameInfo);

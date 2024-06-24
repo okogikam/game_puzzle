@@ -6,6 +6,20 @@
     --white: #efefee;
     --black: #0f0f0f;
 }
+#gameBoard,
+#gameBoard .card-header,
+#gameBoard .card-footer{
+    background-image: url("../img/bg.jpg");    
+    
+}
+#gameBoard .card{
+    box-shadow:  1px 1px 10px 1px var(--dark-choclate);
+    font-family: var(--font-1);
+}
+#gameBoard .card-body{
+    background-color: var(--secondary);
+    display: flex;
+}
 #score-board{
     display: flex;
     flex-flow: column;

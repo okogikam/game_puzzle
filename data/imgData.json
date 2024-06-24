@@ -256,7 +256,7 @@
         "width": "512",
         "piece": "4",
         "condition": [
-            {"stage": "#030"}
+            {"stage": "#029"}
         ]
     },
     {

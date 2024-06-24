@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
 :root{
     --primary: #F8F4E1;
     --secondary: #AF8F6F;
@@ -5,15 +7,39 @@
     --dark-choclate: #543310;
     --white: #efefee;
     --black: #0f0f0f;
+    --font-1: "Caveat", cursive;
 }
 *{
     box-sizing: border-box;
     border: 0px;
     margin: 0px;
+    font-size: var(--font-1);
+    font-size: 1.1rem;    
     /* color: var(--secondary); */
+}
+.card-logo{
+    background-image: url("../img/bg.jpg");
+    box-shadow:  1px 1px 10px 1px var(--dark-choclate);
+    font-family: var(--font-1);
+    color: var(--dark-choclate);
+    
+}
+.card-logo{
+    font-weight: 700;
+}
+.btn{
+    background-image: url("../img/bg.jpg");
+    font-family: var(--font-1);
+    font-size: medium;
+    font-weight: 700;
+    color: var(--dark-choclate);
+    border: none;
+    box-shadow:  -1px 1px 4px 1px var(--dark-choclate);
+    
 }
 #board{
     /* overflow: hidden; */
+    
 }
 #main-board{
     position: relative;
@@ -22,7 +48,8 @@
     overflow-x: hidden;
     padding: 0px;
     margin: 0px;
-    background-color: var(--secondary);
+    background-image: url("../img/bg.jpg");
+    background-size: cover;
 }
 .btn{
     /* background-color: var(--dark-choclate); */
@@ -35,9 +62,12 @@
     display: block;
     z-index: 999;
     padding: 5px;
-    background-color: var(--primary);
+    background-image: url("../img/bg.jpg");
+    font-family: var(--font-1);
+    text-transform: uppercase;
+    box-shadow:  1px 1px 20px 0px var(--dark-choclate);
     color: var(--choclate);
-    font-weight: 800;
+    font-weight: 700;
 }
 #loading{
     position: fixed;
@@ -57,13 +87,14 @@
     font-size: 3rem;
 }
 #stage-conteiner{
-    margin-top: 30px;
+    margin-top: 30px;    
 }
 #stage .card{
     cursor: pointer;
     background-color: var(--primary);
     box-shadow: 1px 1px 1px 0.5 var(--dark-choclate);
     color: var(--choclate);
+    font-family: var(--font-1);
 }
 #gameBoard{
     position: fixed;
