@@ -8,8 +8,8 @@ class Login{
         this.div.setAttribute("id","loginPage");
         this.div.innerHTML = `
         <div class="card-logo">
-            <img class="logo" src="./img/default.jpeg" alt="">
-            <span>Game Slide Puzzle</span>
+            <img class="logo" src="./img/icon_1.png" alt="">
+            <span>Anime Slide Quest</span>
         </div>
         <div class="form"></div>`;
         // this.div.appendChild(webLogo);

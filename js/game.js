@@ -8,6 +8,7 @@ class Game{
         this.timeStart = false;
         this.gameHasStarted = false;
         this.time = 0;
+        this.step = 0;
         this.loading =  false;
         this.showHelp = false;
         this.piece = Number(conf.stage.stage.piece);
@@ -18,6 +19,7 @@ class Game{
         // menyiapkan game 
         this.gameData();
         const gameInfo = document.createElement("div");
+        this.gameElement = gameInfo;
         gameInfo.setAttribute("id","gameBoard");
         gameInfo.innerHTML = 
         `<div class="card">
@@ -36,16 +38,21 @@ class Game{
                     <img id="game_img" class="card-img" src="${this.stage.url}" alt="" style="opacity:1;">
                 </div>
                 <div class="game-control col-8">
-                    <div>
+                    <div class="before-play">
                         <button id="game_start" class="btn">
-                        <i class="fa-solid fa-circle-play"></i>
+                        <i class="fa-solid fa-circle-play"></i> Play
                         </button>
+                    </div>
+                    <div class="after-play d-none">
                         <button id="game_reset" class="btn"><i class="fa-solid fa-rotate-right"></i></button>
                         <button id="game_help" class="btn">
                         <i class="fa-solid fa-circle-info"></i>
                         </button>
+                        <div class="row">
+                        <div class="step col-4"><i class="fa-solid fa-paw"></i>  0</div>
+                        <div class="score col-7"><i class="fa-regular fa-clock"></i>  00:00:00</div>
+                        </div>
                     </div>
-                    <p class="score">00:00:00</p>
                 </div>
               </div>
             </div>                                                  
@@ -68,6 +75,9 @@ class Game{
             if(!this.loading){
                 this.gameStart(gameInfo);
                 this.gameHasStarted = true;
+                gameInfo.querySelector(".before-play").classList.add("d-none");
+                gameInfo.querySelector(".after-play").classList.remove("d-none");
+
             }
         })
         gameInfo.querySelector("#game_reset").addEventListener("click",()=>{
@@ -139,14 +149,25 @@ class Game{
         div.innerHTML = `
         <div class="card p-2">
             <h3><i class="fa-solid fa-star fa-beat"></i> Cleared <i class="fa-solid fa-star fa-beat"></i></h3>
-           <p>Score </br> 
-           ${this.displayTime(this.timeScore)}</p>
+           <p>Step : ${this.step}</br>
+           Time : ${this.displayTime(this.timeScore)}</p>
+           <div class="card-footer">
+           <button class="home" class="btn"><i class="fa-solid fa-reply"></i></button>
+           <button class="game_reset" class="btn"><i class="fa-solid fa-rotate-right"></i></button>
+           </div>
         </div>
         `
-        this.stage.element.appendChild(div);
-        div.addEventListener("click",()=>{
-            div.remove();
+        div.querySelector(".home").addEventListener("click",()=>{
+            this.gameElement.remove();
+            this.stage.main.music.bgmStop();
+            this.stage.main.updateStage();
         })
+        div.querySelector(".game_reset").addEventListener("click",()=>{
+            div.remove();
+            this.gameReset();  
+        })
+
+        this.stage.element.appendChild(div);        
     }
     async gameScore(gameInfo){
         // mencatat skor game
@@ -164,7 +185,8 @@ class Game{
             this.timeStart = false;
         }
         requestAnimationFrame(()=>{
-            gameInfo.querySelector(".score").innerHTML = `${this.displayTime(this.timeScore)}`;
+            gameInfo.querySelector(".step").innerHTML = `<i class="fa-solid fa-paw"></i>  ${this.step}`;
+            gameInfo.querySelector(".score").innerHTML = `<i class="fa-regular fa-clock"></i>  ${this.displayTime(this.timeScore)}`;
             this.gameScore(gameInfo);
         })
 
@@ -195,6 +217,7 @@ class Game{
         
         this.clear  = false;
         this.time = 0;
+        this.step = 0;
         this.timeScore = 0;
         this.timePlay = Date.now();
         this.canvas.draw(this.data2);
@@ -219,15 +242,19 @@ class Game{
         if(this.data2[`${X},${Y+1}`] == "blank"){
             this.data2[`${X},${Y+1}`] = this.data2[`${X},${Y}`];
             this.data2[`${X},${Y}`] = "blank";
+            this.step = this.step + 1;
         }else if(this.data2[`${X},${Y-1}`] == "blank"){
             this.data2[`${X},${Y-1}`] = this.data2[`${X},${Y}`];
             this.data2[`${X},${Y}`] = "blank";
+            this.step = this.step + 1;
         }else if(this.data2[`${X-1},${Y}`] == "blank"){
             this.data2[`${X-1},${Y}`] = this.data2[`${X},${Y}`];
             this.data2[`${X},${Y}`] = "blank";
+            this.step = this.step + 1;
         }else if(this.data2[`${X+1},${Y}`] == "blank"){
             this.data2[`${X+1},${Y}`] = this.data2[`${X},${Y}`];
             this.data2[`${X},${Y}`] = "blank";
+            this.step = this.step + 1;
         }
         this.canvas.draw(this.data2);
 

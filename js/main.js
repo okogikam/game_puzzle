@@ -53,10 +53,10 @@ class Main{
         const userInfo = document.createElement("div");
         userInfo.setAttribute("id","top-menu")
         userInfo.innerHTML = 
-        `<span class="username">${this.dataUser['userName']}</span>
-        <!--<button class="btn btn-secondary btn-sm  setting">
-            <i class="fa-solid fa-gear"></i>
-        </button>-->`
+        `<span class="username"> <img class="logo" src="./img/icon_1.png" alt=""> ${this.dataUser['userName']}</span>
+        <button class="btn btn-secondary btn-sm  setting">
+            <i class="fa-solid fa-share-nodes"></i>
+        </button>`
         this.element.appendChild(userInfo);
     }
 

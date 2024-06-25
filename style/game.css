@@ -9,7 +9,7 @@
 #gameBoard,
 #gameBoard .card-header,
 #gameBoard .card-footer{
-    background-image: url("../img/bg.jpg");    
+    background-image: url("../img/bg_2.jpeg");    
     
 }
 #gameBoard .card{
@@ -65,4 +65,25 @@
 }
 .clear-dialog i {
     color: var(--dark-choclate);
+}
+.before-play{
+    font-size: 1.5rem;
+    text-transform: capitalize;
+}
+.after-play{
+    width: 100%;
+}
+.after-play .row{
+    justify-content: space-between;
+    padding-top: 10px;
+
+}
+.step,
+.score{
+    box-shadow: inset 3px -3px 10px 0px var(--dark-choclate);
+    border-radius: 5px;
+}
+.step i,
+.score i{
+    font-size: 0.8rem;    
 }
