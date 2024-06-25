@@ -80,7 +80,7 @@ class Game{
 
             }
         })
-        gameInfo.querySelector("#game_reset").addEventListener("click",async ()=>{
+        gameInfo.querySelector("#game_reset").addEventListener("click",()=>{
             if(!this.gameHasStarted){
                 return
             }
