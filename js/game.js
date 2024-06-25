@@ -80,7 +80,7 @@ class Game{
 
             }
         })
-        gameInfo.querySelector("#game_reset").addEventListener("click",()=>{
+        gameInfo.querySelector("#game_reset").addEventListener("click",async ()=>{
             if(!this.gameHasStarted){
                 return
             }
@@ -162,9 +162,11 @@ class Game{
             this.stage.main.music.bgmStop();
             this.stage.main.updateStage();
         })
-        div.querySelector(".game_reset").addEventListener("click",()=>{
+        div.querySelector(".game_reset").addEventListener("click",async ()=>{
+            // this.gameReset();  
             div.remove();
-            this.gameReset();  
+            await this.gameReset();  
+            this.canvas.draw(this.data2);
         })
 
         this.stage.element.appendChild(div);        
@@ -305,7 +307,7 @@ class Game{
         }
         if(this.cekGameArray(array1,dataImgGame)){
             this.data2 = dataImgGame
-            return
+            return 
         }
         requestAnimationFrame(()=>{
             this.gameData();
