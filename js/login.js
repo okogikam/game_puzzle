@@ -8,7 +8,7 @@ class Login{
         this.div.setAttribute("id","loginPage");
         this.div.innerHTML = `
         <div class="card-logo">
-            <img class="logo" src="./img/icon_1.png" alt="">
+            <img class="logo" src="./img/icon_6.png" alt="">
             <span>Anime Slide Quest</span>
         </div>
         <div class="form"></div>`;

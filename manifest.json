@@ -3,20 +3,20 @@
   "name": "game_puzzle",
   "icons": [
     {
-      "src": "/game_puzzle/img/icon-sm.png",
+      "src": "/game_puzzle/img/icon_6_sm.png",
       "type": "image/png",
       "sizes": "144x144",
       "purpose": "any"
     },
     {
-      "src": "/game_puzzle/img/icon-md.png",
+      "src": "/game_puzzle/img/icon_6_md.png",
       "type": "image/png",
       "sizes": "400x400",
       "purpose": "any"
     }
   ],
   "start_url": "/game_puzzle/index.html",
-  "background_color": "#543310",
+  "background_color": "#AF8F6F",
   "display": "standalone",
   "orientation": "portrait-primary",
   "scope": "/game_puzzle",

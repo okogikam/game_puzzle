@@ -152,8 +152,8 @@ class Game{
            <p>Step : ${this.step}</br>
            Time : ${this.displayTime(this.timeScore)}</p>
            <div class="card-footer">
-           <button class="home" class="btn"><i class="fa-solid fa-reply"></i></button>
-           <button class="game_reset" class="btn"><i class="fa-solid fa-rotate-right"></i></button>
+           <button class="home btn" class="btn"><i class="fa-solid fa-reply"></i></button>
+           <button class="game_reset btn" class="btn"><i class="fa-solid fa-rotate-right"></i></button>
            </div>
         </div>
         `
@@ -164,9 +164,9 @@ class Game{
         })
         div.querySelector(".game_reset").addEventListener("click",async ()=>{
             // this.gameReset();  
-            div.remove();
             await this.gameReset();  
             this.canvas.draw(this.data2);
+            div.remove();
         })
 
         this.stage.element.appendChild(div);        

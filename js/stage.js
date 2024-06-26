@@ -8,6 +8,8 @@ class Stage{
         this.element = conf.Main.element;
         this.music = conf.Main.music;
         this.main = conf.Main;
+        this.defaultImg = new Image();
+        this.defaultImg.src = "./img/default.png";
     }
 
     display(element){        
@@ -38,7 +40,7 @@ class Stage{
                 </div>
             </div>`
             element.appendChild(gameInfo);
-
+            console.log(this.defaultImg);
             gameInfo.addEventListener("click",()=>{
                 this.playStage();
                 this.main.music.Bgm();

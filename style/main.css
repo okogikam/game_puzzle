@@ -166,3 +166,6 @@
 .welcome-page .btn{
     margin: 5px;
 }
+.form .card{
+    background-color: var(--primary);
+}
