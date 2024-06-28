@@ -8,6 +8,10 @@ class Main{
         this.progressReady = false;        
         this.dataUser = [];
         this.music = [];
+        this.share = new Share({
+            element: this.element,
+            main: this
+        });
         this.data = new Data()
         this.login = new Login({
             main: this
@@ -53,11 +57,43 @@ class Main{
         const userInfo = document.createElement("div");
         userInfo.setAttribute("id","top-menu")
         userInfo.innerHTML = 
-        `<span class="username"> <img class="logo" src="./img/icon_6.png" alt=""> ${this.dataUser['userName']}</span>
-        <button class="btn btn-secondary btn-sm  setting">
+        `<div>
+            <img class="logo" src="./img/icon_6.png" alt=""> Anime Slide Quest
+        </div>
+        <div>
+        <span class="username m-2">${this.dataUser['userName']}</span>
+        <button class="btn btn-secondary btn-sm  share">
             <i class="fa-solid fa-share-nodes"></i>
-        </button>`
+        </button>
+        </div>`
         this.element.appendChild(userInfo);
+        userInfo.querySelector(".share").addEventListener("click",()=>{
+            this.share.init();
+            // available
+            // if (navigator.share) {
+            //     navigator.share({
+ 
+            //         // Title that occurs over
+            //         // web share dialog
+            //         title: 'Anile Slide Quest',
+ 
+            //         // URL to share
+            //         url: 'https://okogikam.github.io/game_puzzle/'
+            //     }).then(() => {
+            //         console.log('Thanks for sharing!');
+            //     }).catch(err => {
+ 
+            //         // Handle errors, if occurred
+            //         console.log(
+            //         "Error while using Web share API:");
+            //         console.log(err);
+            //     });
+            // } else {
+ 
+            //     // Alerts user if API not available 
+            //     alert("Browser doesn't support this API !");
+            // }
+        })
     }
 
     loadGameInfo(){
