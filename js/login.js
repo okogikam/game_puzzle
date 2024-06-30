@@ -84,6 +84,7 @@ class Login{
             }
         })  
         div.querySelector("#btnGoogle").addEventListener("click",()=>{
+            this.main.loadingIn();
             fb.login()
         })   
         div.querySelector(".btn-signup").addEventListener("click",()=>{
