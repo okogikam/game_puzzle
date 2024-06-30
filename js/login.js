@@ -56,6 +56,11 @@ class Login{
             </div>
         </div>
         <div class="error-ms"></div>
+        <div id="firebaseui-auth-container">
+           <h4>Login with: 
+           <button class="btn btn-sm" id="btnGoogle"><i class="fa-brands fa-google"></i></button>           
+           </h4>
+        </div>
         `
         div.querySelector(".btn-login").addEventListener("click",()=>{
             // console.log("clixk")
