@@ -85,7 +85,11 @@
     left: 0;
     right: 0;
     background-color: grey;
-
+    background-image: url("../img/bg_2.jpeg");
+    color: var(--choclate);
+    font-family: var(--font-1);
+    font-weight: 700;
+    font-size: 1.5rem;
     display: flex;
     flex-flow: column;
     justify-content: center;

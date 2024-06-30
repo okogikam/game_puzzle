@@ -90,9 +90,11 @@ class Game{
         })
         gameInfo.querySelector("#game_close").addEventListener("click",()=>{   
             if(!this.loading){
+                this.stage.main.loadingIn();
                 gameInfo.remove();
                 this.stage.main.music.bgmStop();
                 this.stage.main.updateStage();
+                this.stage.main.loadingOut();
             }     
         })
         gameInfo.querySelector("#game_help").addEventListener("click",()=>{

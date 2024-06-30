@@ -4,7 +4,8 @@ class Login{
         this.div = document.createElement("div");
         this.loginStatus =  false
     }
-    loginPage(){     
+    loginPage(){    
+        // console.log(this.main) 
         this.div.setAttribute("id","loginPage");
         this.div.innerHTML = `
         <div class="card-logo">
@@ -34,13 +35,16 @@ class Login{
         </div>
         <div class="error-ms"></div>`
         conf.div.querySelector("#login").addEventListener("click",()=>{
+            this.main.loadingIn();
             this.loginUser({
                 username: conf.dtuser.userName,
                 password: conf.dtuser.password
             })
         })
         conf.div.querySelector("#newUser").addEventListener("click",()=>{
+            this.main.loadingIn();
             this.loginUserPage(this.div.querySelector(".form"));
+            this.main.loadingOut();
         })
     }
     loginUserPage(div){
@@ -64,6 +68,7 @@ class Login{
         `
         div.querySelector(".btn-login").addEventListener("click",()=>{
             // console.log("clixk")
+            this.main.loadingIn();
             this.username = div.querySelector("#username").value;
             this.password = div.querySelector("#password").value;
             if(!this.cekUser(this.username)){
@@ -77,9 +82,14 @@ class Login{
             if(!this.loginStatus){
                 this.errorMs("Username atau Password salah")
             }
-        })     
+        })  
+        div.querySelector("#btnGoogle").addEventListener("click",()=>{
+            fb.login()
+        })   
         div.querySelector(".btn-signup").addEventListener("click",()=>{
+            this.main.loadingIn();
             this.newUser(this.div.querySelector(".form"));
+            this.main.loadingOut();
         })
     }
     newUser(div){
@@ -97,6 +107,7 @@ class Login{
         <div class="error-ms"></div>
         `  
         div.querySelector(".btn-signup").addEventListener("click",()=>{
+            this.main.loadingIn();
             this.username = div.querySelector("#username").value;
             this.password = div.querySelector("#password").value;
             this.email = div.querySelector("#email").value;

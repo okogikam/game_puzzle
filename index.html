@@ -16,8 +16,7 @@
     <link rel="manifest" href="./manifest.json" crossorigin="use-credentials" />
     <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth-compat.js"></script>
-    <!-- firebase js  -->
-    <script type="module" src="./js/firebase.js"></script>
+    
     <!-- google firebase  -->
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
@@ -34,8 +33,7 @@
             <i class="fa-solid fa-puzzle-piece fa-flip"></i>
             <span class="fa-fade">
                 Loading...
-            </span>
-                
+            </span>                
         </div>
     </div>
     <!-- bootstrap  -->
@@ -45,6 +43,7 @@
     
     <!-- main js  -->
     <script src="./js/main.js"></script>
+    <script src="./js/firebase.js" type="module"></script>
     <!-- game js  -->
     <script src="./js/game.js"></script>
     <script src="./js/stage.js"></script>
@@ -58,45 +57,43 @@
      <script src="./service-worker.js"></script>
      <script src="./script.js"></script>
      <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup  } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        // import { getAuth, GoogleAuthProvider, signInWithPopup  } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 
-        const firebaseConfig = {
-        apiKey: "AIzaSyDEBZtrCfyN_7JSKgvi7WDijaW0gN3mBPI",
-        authDomain: "gamepuzzle-428000.firebaseapp.com",
-        projectId: "gamepuzzle-428000",
-        storageBucket: "gamepuzzle-428000.appspot.com",
-        messagingSenderId: "295063846449",
-        appId: "1:295063846449:web:c19e53e1de1c8146d01f10",
-        measurementId: "G-NDLTYR0FS3"
-        };
+        // const firebaseConfig = {
+        // apiKey: "AIzaSyDEBZtrCfyN_7JSKgvi7WDijaW0gN3mBPI",
+        // authDomain: "gamepuzzle-428000.firebaseapp.com",
+        // projectId: "gamepuzzle-428000",
+        // storageBucket: "gamepuzzle-428000.appspot.com",
+        // messagingSenderId: "295063846449",
+        // appId: "1:295063846449:web:c19e53e1de1c8146d01f10",
+        // measurementId: "G-NDLTYR0FS3"
+        // };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const provider = new GoogleAuthProvider();
+        // const app = initializeApp(firebaseConfig);
+        // const auth = getAuth(app);
+        // const provider = new GoogleAuthProvider();
 
-        const btnLogin = document.querySelector("#btnGoogle")
-        btnLogin.addEventListener("click",()=>{            
-            signInWithPopup(auth, provider)
-            .then((result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                const user = result.user;
-                console.log(user['displayName']);
-                console.log(user['email']);
-                gameMain.data.saveData({
-                    username: user['displayName'],
-                    password: user['email'],
-                    email: user['email']
-                })
-                gameMain.init();
-            }).catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                const email = error.customData.email;
-                const credential = GoogleAuthProvider.credentialFromError(error);
-            });
-        })
+        // let btnLogin = document.querySelector("#btnGoogle")
+        // btnLogin.addEventListener("click",()=>{        
+        //     signInWithPopup(auth, provider)
+        //     .then((result) => {
+        //         let credential = GoogleAuthProvider.credentialFromResult(result);
+        //         let token = credential.accessToken;
+        //         let user = result.user;
+        //         console.log(user['displayName']);
+        //         console.log(user['email']);
+        //         gameMain.data.saveData({
+        //             username: user['displayName'],
+        //             password: user['email'],
+        //             email: user['email']
+        //         })
+        //         gameMain.init();
+        //     }).catch((error) => {
+        //         let errorCode = error.code;
+        //         let errorMessage = error.message;
+        //     });
+        // })
      </script>
 </body>
 </html>

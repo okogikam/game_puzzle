@@ -5,9 +5,9 @@ class Stage{
         this.width = conf.image.width;
         this.height = conf.image.height;
         this.status = conf.status;
-        this.element = conf.Main.element;
-        this.music = conf.Main.music;
-        this.main = conf.Main;
+        this.element = conf.main.element;
+        this.music = conf.main.music;
+        this.main = conf.main;
         this.defaultImg = new Image();
         this.defaultImg.src = "./img/default.png";
     }
@@ -41,9 +41,13 @@ class Stage{
             </div>`
             element.appendChild(gameInfo);
             console.log(this.defaultImg);
-            gameInfo.addEventListener("click",()=>{
+            gameInfo.addEventListener("click",async ()=>{
+                this.main.loadingIn();                     
                 this.playStage();
-                this.main.music.Bgm();
+                this.main.loadingOut();
+                setTimeout(()=>{
+                    this.main.music.Bgm();
+                },500)
             })
         }
     }
@@ -76,7 +80,6 @@ class Stage{
         const gamePlayNow = new Game({
             stage: this
         })
-
         gamePlayNow.loadGeme();
     }
 }

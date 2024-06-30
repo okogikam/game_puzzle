@@ -37,7 +37,7 @@ class Main{
                 this.imgReady = true;
                 dtImg.forEach(img => {
                     let stImage = new Stage({
-                        Main: this,
+                        main: this,
                         image: img
                     });
                     this.stage.push(stImage);
@@ -69,30 +69,6 @@ class Main{
         this.element.appendChild(userInfo);
         userInfo.querySelector(".share").addEventListener("click",()=>{
             this.share.init();
-            // available
-            // if (navigator.share) {
-            //     navigator.share({
- 
-            //         // Title that occurs over
-            //         // web share dialog
-            //         title: 'Anile Slide Quest',
- 
-            //         // URL to share
-            //         url: 'https://okogikam.github.io/game_puzzle/'
-            //     }).then(() => {
-            //         console.log('Thanks for sharing!');
-            //     }).catch(err => {
- 
-            //         // Handle errors, if occurred
-            //         console.log(
-            //         "Error while using Web share API:");
-            //         console.log(err);
-            //     });
-            // } else {
- 
-            //     // Alerts user if API not available 
-            //     alert("Browser doesn't support this API !");
-            // }
         })
     }
 
@@ -104,6 +80,7 @@ class Main{
             st.display(stageConteiner);
         })
         this.element.appendChild(stageConteiner);
+        this.loadingOut()
     }
 
     loadAside(){
@@ -131,6 +108,15 @@ class Main{
         
         // this.music.Bgm();
     }
+    loadingIn(){
+        this.load.classList.remove("d-none");
+        console.log("loading")
+    }
+    loadingOut(){
+        setTimeout(()=>{
+            this.load.classList.add("d-none");
+        },1000)
+    }
     async gameLoop(){
         if(this.login.loginStatus){
             if(!this.ready){
@@ -142,16 +128,17 @@ class Main{
                 this.loadUserInfo();
                 this.loadGameInfo(); 
                 this.loadAside();
+                // console.log(this.login.main)
             }
             // this.updateStage();
             if(this.userReady && this.imgReady && this.progressReady){            
                 this.ready = true;
-                this.load.classList.add("d-none");
+                // this.loadingOut();                
             }
         }else{
             this.element.innerHTML = "";
             this.login.loginPage();
-            this.load.classList.add("d-none");
+            this.loadingOut();
             return;
         }
 
