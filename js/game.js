@@ -160,15 +160,20 @@ class Game{
         </div>
         `
         div.querySelector(".home").addEventListener("click",()=>{
+            this.stage.main.loadingIn();
             this.gameElement.remove();
             this.stage.main.music.bgmStop();
             this.stage.main.updateStage();
+            this.stage.main.loadingOut();
         })
         div.querySelector(".game_reset").addEventListener("click",async ()=>{
-            // this.gameReset();  
+            // this.gameReset(); 
+            // this.stage.main.loadingIn(); 
             await this.gameReset();  
             this.canvas.draw(this.data2);
             div.remove();
+            this.canvas.draw(this.data2);
+            // this.stage.main.loadingOut();
         })
 
         this.stage.element.appendChild(div);        
