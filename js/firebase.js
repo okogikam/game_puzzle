@@ -2,13 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebas
 import { getAuth, GoogleAuthProvider, signInWithPopup  } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 
 const firebaseConfig = {
-apiKey: "AIzaSyDEBZtrCfyN_7JSKgvi7WDijaW0gN3mBPI",
-authDomain: "gamepuzzle-428000.firebaseapp.com",
-projectId: "gamepuzzle-428000",
-storageBucket: "gamepuzzle-428000.appspot.com",
-messagingSenderId: "295063846449",
-appId: "1:295063846449:web:c19e53e1de1c8146d01f10",
-measurementId: "G-NDLTYR0FS3"
+   
 };
 
 const app = initializeApp(firebaseConfig);
